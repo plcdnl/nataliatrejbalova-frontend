@@ -30,7 +30,6 @@ export default defineConfig({
   shortcuts: {
     'capsize': '[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]',
 
-    // Transition utils
     'motion-base':
       'transition-opacity,transform,colors duration-500 ease-custom-circ will-change-transform',
     'motion-snug':
@@ -40,14 +39,12 @@ export default defineConfig({
     'motion-relaxed':
       'transition-opacity,transform,colors duration-1000 ease-custom-circ will-change-transform',
 
-    // Layout utils
     'lay-v': 'grid grid-flow-row [grid-auto-columns:minmax(0,1fr)] [grid-template-rows:minmax(0,auto)]',
     'lay-h': 'grid grid-flow-col [grid-auto-columns:minmax(0,1fr)] [grid-template-rows:minmax(0,auto)]',
     'lay-fluid': 'grid grid-flow-row auto-rows-fr [grid-auto-columns:minmax(0,1fr)]',
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
-    // Typography
-    'typo-sans-1': 'font-sans text-4 leading-[1.2]', // legal / fine print
+    'typo-sans-1': 'font-sans text-4 leading-[1.2]',
   },
 
   theme: {

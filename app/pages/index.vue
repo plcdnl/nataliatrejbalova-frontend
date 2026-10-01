@@ -12,35 +12,30 @@ useCraftSEO(page)
 useCraftOrgSchema(page)
 useI18nParams(page)
 
-// Rotate logo, first image and selection colour by server timestamp; useState carries it into the payload for hydration
 const now = useState('server-now', () => Date.now())
 
-// Start the roller from a different image on every visit
 const media = computed(() => {
   const items = (page.media ?? []) as MediaFragment[]
   const start = now.value % (items.length || 1)
   return [...items.slice(start), ...items.slice(0, start)]
 })
 
-// The roller is opt-in via ?roller=true; by default the media crossfade
 const route = useRoute()
-const useRoller = computed(() => route.query.roller === 'true')
+const roller = computed(() => route.query.roller === 'true' ? '3d' : route.query.roller)
 
 const logo = computed(() => (now.value % LOGO_SIZES.length) + 1)
 const logoStyle = computed(() => logoMask(`/logo/alberto_garutti-boxed-${logo.value}.svg`))
 
-// Full class names so UnoCSS picks them up
 const selections = ['selection:bg-peach', 'selection:bg-blush', 'selection:bg-sky', 'selection:bg-lime']
 const selection = computed(() => selections[now.value % selections.length])
 
-// Info overlay toggled by the logo; the scrollbar-gutter plugin locks the page scroll while it's open
 const isOpen = useIsInfoOpen()
 </script>
 
 <template>
   <div class="selection:text-black" :class="selection">
-    <MediaRoller
-      v-if="media.length && useRoller"
+    <MediaRoller3D
+      v-if="media.length && roller === '3d'"
       :media
       :speed="20"
       :hold="3"
@@ -50,7 +45,17 @@ const isOpen = useIsInfoOpen()
       :snap-duration="0.5"
       snap-ease="back.out(2)"
     />
-    <SlideshowFade v-else-if="media.length" :media />
+    <SlideshowFade v-else-if="media.length && roller === 'fade'" :media />
+    <MediaRoller
+      v-else-if="media.length"
+      :media
+      :speed="20"
+      :hold="3"
+      :gap="0"
+      :snap-distance="44"
+      :snap-duration="0.5"
+      snap-ease="back.out(2)"
+    />
 
     <button
       type="button"

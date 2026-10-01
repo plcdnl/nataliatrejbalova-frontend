@@ -12,7 +12,6 @@ const isNotFound = computed(() => props.error.statusCode === 404)
 const title = computed(() => isNotFound.value ? t('error.notFound.title') : t('error.generic.title'))
 const message = computed(() => isNotFound.value ? t('error.notFound.message') : t('error.generic.message'))
 
-// Static fallback logos in /public, rotated by server timestamp like the landing
 const logos = [1, 2, 3, 4, 5].map(i => `/logo/alberto_garutti-boxed-${i}.svg`)
 const now = useState('server-now', () => Date.now())
 const logo = computed(() => logos[now.value % logos.length])
@@ -62,7 +61,6 @@ async function goHome() {
   padding: calc(var(--spacing) * 5);
 }
 
-/* Staggered fade-up on first paint */
 .errorPage-reveal {
   animation: errorPage-reveal 0.9s cubic-bezier(0.19, 1, 0.22, 1) both;
 }

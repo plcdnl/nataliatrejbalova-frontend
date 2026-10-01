@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onKeyStroke } from '@vueuse/core'
-import { LOGO_SIZES, logoMask } from '~/utils/logo'
+import { LOGO_FRAME, LOGO_INSETS, LOGO_SIZES, logoMask } from '~/utils/logo'
 
 export interface InfoPanelProps {
-  /** Variante del logo, 1-based (vedi LOGO_SIZES) */
   logo: number
   body?: string | null
   sidebar?: string | null
@@ -13,7 +12,6 @@ const props = defineProps<InfoPanelProps>()
 
 const open = defineModel<boolean>('open', { default: false })
 
-// Blur so the keypress doesn't leave a focus-visible ring on the logo
 onKeyStroke('Escape', () => {
   if (!open.value)
     return
@@ -21,7 +19,6 @@ onKeyStroke('Escape', () => {
   open.value = false
 })
 
-// Click anywhere to close, but not when the click ends a text selection, clears one, or hits a link
 let hadSelection = false
 
 function hasSelection() {
@@ -38,7 +35,13 @@ function onClick(event: MouseEvent) {
   open.value = false
 }
 
-const mask = computed(() => logoMask(`/logo/alberto_garutti-${props.logo}.svg`, LOGO_SIZES[props.logo - 1], 'left top'))
+const mask = computed(() => {
+  const [x, y] = LOGO_INSETS[props.logo - 1]
+  return {
+    ...logoMask(`/logo/alberto_garutti-${props.logo}.svg`, LOGO_SIZES[props.logo - 1], 'left top'),
+    translate: `${(-x / LOGO_FRAME[0]) * 100}% ${(-y / LOGO_FRAME[1]) * 100}%`,
+  }
+})
 </script>
 
 <template>
@@ -57,7 +60,7 @@ const mask = computed(() => logoMask(`/logo/alberto_garutti-${props.logo}.svg`, 
     >
       <button
         type="button"
-        class="cursor-pointer left-2.5 top-2.5 fixed z-1 lg:left-5 lg:top-5"
+        class="cursor-pointer left-2.5 top-2.5 fixed z-1 lg:left-5 lg:top-[calc(1.25rem+0.25em)]"
         aria-label="Alberto Garutti"
         aria-expanded="true"
         aria-controls="info-overlay"

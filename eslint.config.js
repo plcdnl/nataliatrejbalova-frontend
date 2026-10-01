@@ -4,9 +4,7 @@ import graphqlPlugin from '@graphql-eslint/eslint-plugin'
 import { globalIgnores } from 'eslint/config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
-/** export default withNuxt( */
 export default withNuxt(
-  // Your custom configs here
   await antfu(
     {
       formatters: true,
@@ -46,7 +44,7 @@ export default withNuxt(
   ]),
   {
     rules: {
-      'unocss/order': 'error', // or "error",
+      'unocss/order': 'error',
     },
   },
   {

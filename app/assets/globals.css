@@ -73,7 +73,7 @@ textarea:-webkit-autofill:hover {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 
   @screen lg {
-    gap: calc(var(--spacing) * 10);
+    gap: calc(var(--spacing) * 15);
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }

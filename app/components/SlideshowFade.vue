@@ -6,9 +6,7 @@ import type { MediaFragment } from '#graphql-operations'
 
 export interface SlideshowFadeProps {
   media: MediaFragment[]
-  /** Permanenza di ogni media, in secondi */
   hold?: number
-  /** Durata della dissolvenza, in secondi */
   duration?: number
   imgProps?: CraftImageProps
   videoProps?: CraftVideoProps
@@ -20,7 +18,6 @@ const props = withDefaults(defineProps<SlideshowFadeProps>(), {
 })
 
 const emit = defineEmits<{
-  /** Un media è ora completamente visibile */
   change: [index: number]
 }>()
 
@@ -39,8 +36,6 @@ const mergedVideoProps = computed<CraftVideoProps>(() => ({
   ...props.videoProps,
 }))
 
-// Stessa dissolvenza dello slideshow di Coral Eye: il media successivo entra sopra quello visibile,
-// poi quelli sotto vengono nascosti e lo z-index azzerato
 let current = 0
 let autoplay: gsap.core.Tween | null = null
 let transition: gsap.core.Tween | null = null

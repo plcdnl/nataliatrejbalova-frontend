@@ -1,6 +1,5 @@
 import { defaultLocale, locales } from './i18n'
 
-// Host da cui il proxy /api/media può scaricare (backend Craft e CDN delle immagini)
 const mediaProxyHosts = [import.meta.env.NUXT_PUBLIC_BACKEND_URL, import.meta.env.NUXT_IMAGE_CLOUDFLARE_BASE_URL]
   .filter(Boolean)
   .map(url => new URL(url!).host)
@@ -17,7 +16,6 @@ export default defineNuxtConfig({
   css: ['~/assets/globals.css'],
 
   runtimeConfig: {
-    // sovrascrivibile con NUXT_MEDIA_PROXY_HOSTS (lista separata da virgole)
     mediaProxyHosts,
   },
 
@@ -77,7 +75,7 @@ export default defineNuxtConfig({
     api: {
       enabled: true,
       authorization: import.meta.dev ? false : 'hunter',
-      cacheTagInvalidationDelay: 3000, // 3 seconds
+      cacheTagInvalidationDelay: 3000,
     },
     data: {
       enabled: true,

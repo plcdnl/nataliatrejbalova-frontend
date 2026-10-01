@@ -47,7 +47,7 @@ export default defineConfig({
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
     // Typography
-    'typo-sans-1': 'capsize font-sans font-medium text-3 leading-3.5 lg:text-3.5 lg:leading-3.75 tracking-0.01em', // legal / fine print
+    'typo-sans-1': 'font-sans text-4 leading-[1.2]', // legal / fine print
   },
 
   theme: {
@@ -61,7 +61,7 @@ export default defineConfig({
       'custom-circ': 'cubic-bezier(0.25, 1, 0.5, 1)',
     },
     font: {
-      sans: '"Inter", Arial, sans-serif',
+      sans: '"AVSyntecaGarutti", Arial, sans-serif',
     },
   },
 })

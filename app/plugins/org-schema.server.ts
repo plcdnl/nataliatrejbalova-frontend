@@ -7,7 +7,7 @@ export default defineNuxtPlugin({
     const site = '$i18n' in nuxtApp ? nuxtApp.$i18n?.locale?.value : undefined
 
     const { data } = await useGraphqlQuery('OrgSchema', {
-      site: site || 'default',
+      site: site || 'en',
     })
 
     useCraftOrgSchemaIdentity(data.orgSchema)

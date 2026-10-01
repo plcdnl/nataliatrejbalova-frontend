@@ -31,7 +31,7 @@ html {
 
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: var(--font-sans);
+  --uno: typo-sans-1;
 }
 
 ::selection {
@@ -63,30 +63,22 @@ textarea:-webkit-autofill:hover {
 
 .layout-grid {
   display: grid;
-  gap: calc(var(--spacing) * 2);
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: calc(var(--spacing) * 5);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 
   @screen lg {
-    gap: calc(var(--spacing) * 7.5);
+    gap: calc(var(--spacing) * 10);
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 
 .container {
   width: 100%;
-  padding-inline: calc(var(--spacing) * 4.5);
-
-  @screen lg {
-    padding-inline: calc(var(--spacing) * 8);
-  }
+  padding-inline: calc(var(--spacing) * 5);
 }
 
 .break-container {
-  margin-inline: calc(var(--spacing) * -4.5);
-
-  @screen lg {
-    margin-inline: calc(var(--spacing) * -8);
-  }
+  margin-inline: calc(var(--spacing) * -5);
 }
 
 .desktop-only {

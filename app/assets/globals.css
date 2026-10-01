@@ -1,0 +1,180 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  border: 0 solid;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-padding-top: calc(var(--full-header-height, 0) + var(--scroll-gap, 0));
+  scrollbar-gutter: stable;
+
+  font-size: 100%;
+  height: 100%;
+
+  @screen lg {
+    font-size: 75.6%;
+  }
+
+  @screen xl {
+    font-size: 87.5%;
+  }
+
+  @screen 4xl {
+    font-size: 100%;
+  }
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--colors-black);
+  color: var(--colors-white);
+}
+
+.is-site-loading * {
+  cursor: wait !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+select:-webkit-autofill,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:hover,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  transition:
+    background-color 600000s ease-in-out 0s,
+    color 600000s ease-in-out 0s;
+}
+
+.layout-grid {
+  display: grid;
+  gap: calc(var(--spacing) * 2);
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+
+  @screen lg {
+    gap: calc(var(--spacing) * 7.5);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.container {
+  width: 100%;
+  padding-inline: calc(var(--spacing) * 4.5);
+
+  @screen lg {
+    padding-inline: calc(var(--spacing) * 8);
+  }
+}
+
+.break-container {
+  margin-inline: calc(var(--spacing) * -4.5);
+
+  @screen lg {
+    margin-inline: calc(var(--spacing) * -8);
+  }
+}
+
+.desktop-only {
+  @screen lt-lg {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  @screen lg {
+    display: none !important;
+  }
+}
+
+/*
+ * Shared base for link-style elements that reveal an underline bar
+ * (ButtonLink, ButtonNav, ButtonNavSubmenu, FilterChip). Components apply
+ * `underline-link` plus, where relevant, `underlined`;
+ * the `active` / `is-checked` state classes and
+ * vue-router's `router-link-exact-active` are picked up automatically.
+ */
+.underline-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: calc(var(--spacing) * 0.25);
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+.underline-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.32s var(--ease-custom-circ);
+}
+
+/* Bar stays permanently visible; hover only plays a decorative wipe */
+.underline-link.underlined::after {
+  transform: scaleX(1);
+  transition: none;
+}
+
+@keyframes underline-wipe {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  50% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  50.001% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underline-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .underline-link.underlined:hover::after,
+  .group-buttonLink:hover .underline-link.underlined::after {
+    animation: underline-wipe 0.48s var(--ease-custom-circ) forwards;
+  }
+}
+
+.underline-link.active::after,
+.underline-link.router-link-exact-active::after,
+.underline-link:has(input.is-checked)::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

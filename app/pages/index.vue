@@ -5,7 +5,7 @@ const route = useRoute()
 
 const page = await useCraftEntry<LandingEntryFragment>({
   section: ['landing'],
-  slug: [(route.params.slug) as string],
+  slug: ['landing'],
 })
 
 useCraftSEO(page)
@@ -15,9 +15,6 @@ useI18nParams(page)
 
 <template>
   <div class="container">
-    <h1>Nuxt Craft Example</h1>
-    <p>{{ page.title }}</p>
-    <p>{{ page.slug }}</p>
-    <LocaleSwitcher />
+    <h1>{{ page }}</h1>
   </div>
 </template>

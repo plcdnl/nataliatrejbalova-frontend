@@ -17,6 +17,6 @@ query Entry(
     hasDescendants: $hasDescendants
   ) {
     ...EntryInterfaceType
-    ...PageEntry
+    ...LandingEntry
   }
 }

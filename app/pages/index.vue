@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import type { EntryInterfaceTypeFragment } from '#graphql-operations'
+import type { LandingEntryFragment } from '#graphql-operations'
 
-const { locale } = useI18n()
+const route = useRoute()
 
-const variables = computed(() => ({
-  locale: [locale.value],
-  section: ['page'],
-}))
-
-const { data: pages } = await useAsyncGraphqlQuery('Entries', variables, {
-  transform: response => response.data.entries as EntryInterfaceTypeFragment[],
+const page = await useCraftEntry<LandingEntryFragment>({
+  section: ['landing'],
+  slug: [(route.params.slug) as string],
 })
 
-useCraftSEO(pages.value?.[0] as EntryInterfaceTypeFragment)
+useCraftSEO(page)
+useCraftOrgSchema(page)
+useI18nParams(page)
 </script>
 
 <template>
-  <div>
-    <h1> Starter Craft</h1>
-    <ul v-if="pages && pages?.length > 0">
-      <li v-for="page in pages" :key="page.id">
-        <CraftLink :link="page">
-          {{ page.title }}
-        </CraftLink>
-      </li>
-    </ul>
+  <div class="container">
+    <h1>Nuxt Craft Example</h1>
+    <p>{{ page.title }}</p>
+    <p>{{ page.slug }}</p>
+    <LocaleSwitcher />
   </div>
 </template>

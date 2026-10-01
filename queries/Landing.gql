@@ -1,0 +1,3 @@
+fragment LandingEntry on landingPage_Entry {
+  ...EntryInterfaceType
+}

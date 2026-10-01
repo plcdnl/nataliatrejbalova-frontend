@@ -13,6 +13,12 @@ export default defineNuxtConfig({
   modules: [
     '@studio-fes/nuxt-remote-svg',
   ],
+  app: {
+    head: {
+      // Un solo rel="icon": nuxt-seo-utils non aggiunge gli altri, app.vue lo sovrascrive via key
+      link: [{ key: 'favicon', rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' }],
+    },
+  },
   css: ['~/assets/globals.css'],
 
   runtimeConfig: {

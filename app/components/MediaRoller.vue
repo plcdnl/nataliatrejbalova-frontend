@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CraftImageProps } from '@studio-fes/layer-craft/app/components/CraftImage.vue'
 import type { CraftVideoProps } from '@studio-fes/layer-craft/app/components/CraftVideo.vue'
+import type { MediaInterfaceFragment } from '@studio-fes/layer-craft/app/types/graphql-operations'
 import type { MediaFragment } from '#graphql-operations'
 
 export interface MediaRollerProps {
@@ -553,7 +554,7 @@ onBeforeUnmount(() => {
       >
         <CraftMedia
           class="size-full object-cover"
-          :media="item"
+          :media="(item as MediaInterfaceFragment)"
           :img-props="mergedImgProps"
           :video-props="mergedVideoProps"
         />
@@ -562,7 +563,7 @@ onBeforeUnmount(() => {
     <canvas
       v-show="!glFailed"
       ref="canvas"
-      class="size-full inset-0 absolute motion-natural"
+      class="motion-natural size-full inset-0 absolute"
       :class="{ 'opacity-0': !ready }"
       aria-hidden="true"
     />

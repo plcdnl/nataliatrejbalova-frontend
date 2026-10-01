@@ -52,7 +52,11 @@ export default defineConfig({
 
   theme: {
     colors: {
-
+      ivory: '#F7F5F2',
+      peach: '#F6E8D8',
+      blush: '#FCEFEF',
+      sky: '#E7EEF9',
+      lime: '#F5F6DD',
     },
     ease: {
       'custom-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',

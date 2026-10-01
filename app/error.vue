@@ -13,7 +13,7 @@ const title = computed(() => isNotFound.value ? t('error.notFound.title') : t('e
 const message = computed(() => isNotFound.value ? t('error.notFound.message') : t('error.generic.message'))
 
 // Static fallback logos in /public, rotated by server timestamp like the landing
-const logos = [1, 2, 3, 4, 5].map(i => `/logo/SAAG_LOGO_0${i}.svg`)
+const logos = [1, 2, 3, 4, 5].map(i => `/logo/alberto_garutti-boxed-${i}.svg`)
 const now = useState('server-now', () => Date.now())
 const logo = computed(() => logos[now.value % logos.length])
 

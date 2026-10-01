@@ -54,7 +54,7 @@ const mask = computed(() => {
     <section
       v-show="open"
       id="info-overlay"
-      class="overscroll-contain bg-white cursor-pointer inset-0 fixed z-10 overflow-y-auto"
+      class="overscroll-y-none bg-white cursor-pointer inset-0 fixed z-10 overflow-y-auto"
       @pointerdown="onPointerdown"
       @click="onClick"
     >

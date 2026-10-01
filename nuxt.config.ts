@@ -5,6 +5,18 @@ export default defineNuxtConfig({
     '@studio-fes/layer-craft',
   ],
 
+  modules: [
+    '@studio-fes/nuxt-remote-svg',
+  ],
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@studio-fes/nuxt-remote-svg',
+      ],
+    },
+  },
+
   eslint: {
     config: {
       standalone: false,

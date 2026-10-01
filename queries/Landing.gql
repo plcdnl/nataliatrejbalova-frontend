@@ -1,8 +1,5 @@
 fragment LandingEntry on landingPage_Entry {
   ...EntryInterfaceType
-  logo {
-    ...Media
-  }
   media {
     ...Media
   }

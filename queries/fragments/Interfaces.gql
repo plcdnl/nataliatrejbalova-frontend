@@ -1,0 +1,25 @@
+fragment Localized on EntryInterface {
+  language
+  locale: siteHandle
+  slug
+  uri
+  ancestors {
+    language
+    locale: siteHandle
+    slug
+    uri
+  }
+}
+
+fragment EntryInterfaceType on EntryInterface {
+  id
+  url
+  slug
+  title
+  sectionHandle
+  __typename
+
+  localized {
+    ...Localized
+  }
+}

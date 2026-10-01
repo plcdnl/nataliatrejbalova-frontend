@@ -1,0 +1,11 @@
+fragment Media on media_Asset {
+  id
+  url
+  alt
+  title
+  width
+  height
+  format
+  kind
+  __typename
+}

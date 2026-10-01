@@ -1,0 +1,6 @@
+fragment PageEntry on pageDefault_Entry {
+  ...EntryInterfaceType
+  orgSchema {
+    ...OrgSchemaFieldPieces
+  }
+}

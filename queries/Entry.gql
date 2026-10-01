@@ -1,0 +1,22 @@
+query Entry(
+  $section: [String]
+  $slug: [String]
+  $uri: [String]
+  $site: [String]
+  $type: [String]
+  $level: Int
+  $hasDescendants: Boolean
+) {
+  entry(
+    section: $section
+    slug: $slug
+    uri: $uri
+    site: $site
+    type: $type
+    level: $level
+    hasDescendants: $hasDescendants
+  ) {
+    ...EntryInterfaceType
+    ...PageEntry
+  }
+}

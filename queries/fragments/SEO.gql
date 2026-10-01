@@ -1,0 +1,27 @@
+fragment seoSocialData on Ether_SeoSocialData {
+  description
+  image {
+    ...Media
+  }
+  title
+  __typename
+}
+
+fragment SEO on Ether_SeoData {
+  title
+  description
+  keywords {
+    keyword
+    rating
+    __typename
+  }
+  social {
+    facebook {
+      ...seoSocialData
+    }
+    twitter {
+      ...seoSocialData
+    }
+  }
+  __typename
+}

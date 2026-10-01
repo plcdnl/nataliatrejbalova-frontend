@@ -1,0 +1,21 @@
+query OrgSchema($site: String!) {
+  orgSchema(site: $site) {
+    type
+    name
+    legalName
+    url
+    logoUrl
+    email
+    telephone
+    sameAs
+    addresses {
+      streetAddress
+      addressLocality
+      addressRegion
+      postalCode
+      addressCountry
+      priceRange
+      openingHours
+    }
+  }
+}

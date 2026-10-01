@@ -1,0 +1,6 @@
+query SiteConfig {
+  siteConfig {
+    siteName
+    siteUrl
+  }
+}

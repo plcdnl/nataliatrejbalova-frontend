@@ -1,0 +1,39 @@
+query Entries(
+  $section: [String]
+  $limit: Int = null
+  $offset: Int = null
+  $orderBy: String = null
+  $excludeIds: [QueryArgument] = null
+  $relatedToEntries: [EntryRelationCriteriaInput]
+  $relatedTo: [QueryArgument]
+  $search: String = null
+  $type: [String] = null
+  $site: [String] = null
+) {
+  entries(
+    section: $section
+    limit: $limit
+    offset: $offset
+    orderBy: $orderBy
+    id: $excludeIds
+    relatedToEntries: $relatedToEntries
+    relatedTo: $relatedTo
+    search: $search
+    type: $type
+    site: $site
+  ) {
+    ...EntryInterfaceType
+  }
+  entryCount(
+    section: $section
+    limit: $limit
+    offset: $offset
+    orderBy: $orderBy
+    id: $excludeIds
+    relatedToEntries: $relatedToEntries
+    relatedTo: $relatedTo
+    search: $search
+    type: $type
+    site: $site
+  )
+}

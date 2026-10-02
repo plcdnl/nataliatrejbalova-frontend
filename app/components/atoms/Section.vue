@@ -18,7 +18,7 @@ defineProps<SectionProps>()
 }
 
 .section.padded {
-  margin-block: calc(var(--spacing) * 3);
+  margin-block: calc(var(--spacing) * 6);
 }
 
 /* il primo blocco resta allineato all'inizio del contenuto (e quindi al menu) */

@@ -69,7 +69,7 @@ const mask = computed(() => {
         <span class="bg-black h-25 w-auto block lg:h-35" :style="mask" />
       </button>
       <div class="container layout-grid pb-5 pt-35 lg:pt-5">
-        <div class="col-span-full lg:col-span-5 lg:col-start-5">
+        <div class="col-span-full lg:col-span-6 lg:col-start-4">
           <Text v-if="body" :html="body" class="typo-sans-1 cursor-text space-y-1.2em" />
         </div>
         <div class="col-span-full lg:col-span-3">

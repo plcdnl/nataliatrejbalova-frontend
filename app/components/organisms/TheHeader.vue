@@ -152,14 +152,14 @@ const siteConfig = useSiteConfig()
       v-if="links.length"
       id="main-nav"
       ref="nav"
-      class="nav container pt-3 flex flex-col items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-[calc(50svh+0.75rem)] lt-lg:bg-white lg:pointer-events-none lt-lg:bottom-0"
+      class="nav container pb-3 flex flex-col items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-[calc(50svh+0.75rem)] lt-lg:bg-white lg:pointer-events-none lt-lg:bottom-0"
       :class="{ invisible: isHome && !isMounted }"
     >
       <CraftLink
         v-for="link in links"
         :key="link?.id ?? undefined"
         :link="link?.customLink ?? undefined"
-        class="nav-item pointer-events-auto"
+        class="nav-item motion-base pointer-events-auto [&.router-link-active]:text-gray-400 hover:text-gray-400"
       />
     </nav>
   </header>

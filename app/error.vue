@@ -31,17 +31,18 @@ async function goHome() {
     <!-- stessa griglia delle righe dell'archivio, all'altezza del menu: il codice al posto dell'anno -->
     <div class="layout-grid mt-50svh">
       <!-- niente TheHeader: niente query a Craft, la pagina deve reggere anche se il backend non risponde -->
-      <NuxtLink
+      <Anchor
         :to="localePath('/')"
+        :locale="false"
         class="error-reveal col-span-6 justify-self-start lg:col-span-5"
         style="--i: 0"
         @click.prevent="goHome"
       >
         {{ siteConfig.name }}
-      </NuxtLink>
+      </Anchor>
 
       <p class="error-reveal col-span-2 lg:col-start-6" style="--i: 1">
-        {{ error.statusCode }}
+        {{ error.status }}
       </p>
 
       <div class="col-span-4 lg:col-span-5 lg:col-start-8">
@@ -51,14 +52,15 @@ async function goHome() {
         <p class="error-reveal" style="--i: 3">
           {{ message }}
         </p>
-        <NuxtLink
+        <Anchor
           :to="localePath('/')"
+          :locale="false"
           class="error-reveal mt-1.2em motion-snug inline-block italic hover:opacity-50"
           style="--i: 4"
           @click.prevent="goHome"
         >
           {{ t('error.backHome') }}
-        </NuxtLink>
+        </Anchor>
       </div>
     </div>
   </main>

@@ -25,4 +25,7 @@ defineProps<SectionProps>()
 .section.padded:first-child {
   margin-top: 0;
 }
+.section.padded:last-child {
+  margin-bottom: 0;
+}
 </style>

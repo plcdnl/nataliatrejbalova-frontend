@@ -28,10 +28,10 @@ const projects = computed(() => (data.value?.data?.entries ?? []) as ProjectThum
 <template>
   <ul>
     <li v-for="project in projects" :key="project.id ?? undefined" data-reveal>
-      <NuxtLinkLocale :to="`/project/${project.slug}`" class="layout-grid">
+      <Anchor :to="project.url ?? undefined" :locale="false" class="layout-grid motion-base [&.router-link-active]:text-gray-400 hover:text-gray-400">
         <Text as="span" :text="project.year" class="col-span-2 lg:col-start-6" />
         <Text as="span" :text="project.title" class="col-span-4 lg:col-span-5 lg:col-start-8" />
-      </NuxtLinkLocale>
+      </Anchor>
     </li>
   </ul>
 </template>

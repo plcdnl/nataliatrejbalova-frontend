@@ -1,6 +1,6 @@
 fragment ProjectThumb on project_Entry {
   ...EntryInterfaceType
-  year: postDate @formatDateTime(format: "Y")
+  year: date @formatDateTime(format: "Y")
 }
 
 fragment Project on project_Entry {

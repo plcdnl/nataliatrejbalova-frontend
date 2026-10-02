@@ -27,7 +27,7 @@ const projects = computed(() => (data.value?.data?.entries ?? []) as ProjectThum
 
 <template>
   <ul>
-    <li v-for="project in projects" :key="project.id ?? undefined">
+    <li v-for="project in projects" :key="project.id ?? undefined" data-reveal>
       <NuxtLinkLocale :to="`/project/${project.slug}`" class="layout-grid">
         <Text as="span" :text="project.year" class="col-span-2 lg:col-start-6" />
         <Text as="span" :text="project.title" class="col-span-4 lg:col-span-5 lg:col-start-8" />

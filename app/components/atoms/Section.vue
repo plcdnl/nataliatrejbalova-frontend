@@ -7,7 +7,7 @@ defineProps<SectionProps>()
 </script>
 
 <template>
-  <section class="section" :class="{ padded }">
+  <section class="section" :class="{ padded }" data-reveal>
     <slot />
   </section>
 </template>

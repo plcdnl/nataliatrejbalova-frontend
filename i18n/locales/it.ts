@@ -1,5 +1,9 @@
 export default {
   All: 'Alle',
+  menu: {
+    open: 'Menu',
+    close: 'Chiudi',
+  },
   error: {
     notFound: {
       title: 'Pagina non trovata',

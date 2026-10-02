@@ -1,0 +1,15 @@
+fragment Splashscreen on splashscreen_Entry {
+  ...EntryInterfaceType
+  media {
+    ...Media
+  }
+  seo {
+    ...SEO
+  }
+}
+
+query Splashscreen($site: [String]) {
+  splashscreenEntries(site: $site) {
+    ...Splashscreen
+  }
+}

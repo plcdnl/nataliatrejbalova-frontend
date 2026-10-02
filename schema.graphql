@@ -3989,6 +3989,7 @@ interface EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -4070,6 +4071,7 @@ interface EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -4334,6 +4336,7 @@ interface EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -4666,6 +4669,7 @@ interface EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -5308,6 +5312,7 @@ interface EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -5641,6 +5646,7 @@ interface EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -5722,6 +5728,7 @@ interface EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -6015,6 +6022,7 @@ input EntryRelationCriteriaInput {
   before: String
   controls: Boolean
   customLink: [QueryArgument]
+  date: [QueryArgument]
 
   """Narrows the query results based on the elements’ creation dates."""
   dateCreated: [String]
@@ -6377,6 +6385,287 @@ The `Number` scalar type represents a number that can be a float, an integer or 
 scalar Number
 
 type Query {
+  """Entries within the “Additional Informations” Matrix field."""
+  additionalInformationsFieldEntries(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    customLink: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [additionalInformationsFieldEntryUnion]
+
   """This query is used to query for a single address."""
   address(
     """
@@ -8640,6 +8929,7 @@ type Query {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -8970,6 +9260,7 @@ type Query {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -9300,6 +9591,7 @@ type Query {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -11298,6 +11590,7 @@ type Query {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -12107,6 +12400,560 @@ type Query {
   Returns site metadata resolved from env defaults and Toolkit overrides.
   """
   siteConfig: ToolkitSiteConfig
+
+  """Entries within the “Splashscreen” section."""
+  splashscreenEntries(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    media: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [splashscreenSectionEntryUnion]
+
+  """Single entry within the “Splashscreen” section."""
+  splashscreenEntry(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    media: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): splashscreenSectionEntryUnion
 
   """Returns Toolkit static labels for the requested site handle."""
   staticLabels(site: String!): ToolkitStaticLabels
@@ -13584,6 +14431,8 @@ input UserRelationCriteriaInput {
   username: [String]
 }
 
+union additionalInformationsFieldEntryUnion = information_Entry
+
 type blockGrid_Entry implements ElementInterface & EntryInterface {
   """Return a number of related elements for a field."""
   _count(
@@ -14872,6 +15721,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -14953,6 +15803,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -15217,6 +16068,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -15549,6 +16401,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -16191,6 +17044,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -16524,6 +17378,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -16605,6 +17460,7 @@ type blockGrid_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -17850,6 +18706,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -17931,6 +18788,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -18195,6 +19053,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -18746,6 +19605,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -19388,6 +20248,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -19721,6 +20582,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -19802,6 +20664,7 @@ type blockMedia_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -21046,6 +21909,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -21127,6 +21991,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -21391,6 +22256,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -21723,6 +22589,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -22365,6 +23232,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -22698,6 +23566,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -22779,6 +23648,7 @@ type blockText_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -24027,6 +24897,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -24108,6 +24979,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -24372,6 +25244,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -24923,6 +25796,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -25565,6 +26439,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -25898,6 +26773,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -25979,6 +26855,7 @@ type columnBlockMedia_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -27222,6 +28099,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -27303,6 +28181,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -27567,6 +28446,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -27899,6 +28779,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -28541,6 +29422,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -28874,6 +29756,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -28955,6 +29838,7 @@ type columnBlockText_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -30516,6 +31400,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -30597,6 +31482,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -30861,6 +31747,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -31193,6 +32080,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -31835,6 +32723,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -32168,6 +33057,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -32249,6 +33139,7 @@ type columnBlocks_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -33498,6 +34389,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -33579,6 +34471,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -33844,6 +34737,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -34177,6 +35071,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -34819,6 +35714,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -35152,6 +36048,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -35233,6 +36130,7 @@ type credit_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -36481,6 +37379,7 @@ type header_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -36562,6 +37461,7 @@ type header_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -37125,6 +38025,7 @@ type header_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -37457,6 +38358,7 @@ type header_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -38099,6 +39001,7 @@ type header_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -38432,6 +39335,7 @@ type header_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -38513,6 +39417,7 @@ type header_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -39757,6 +40662,7 @@ type information_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -39838,6 +40744,7 @@ type information_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -40102,6 +41009,7 @@ type information_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -40434,6 +41342,7 @@ type information_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -41076,6 +41985,7 @@ type information_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -41409,6 +42319,7 @@ type information_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -41490,6 +42401,7 @@ type information_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -42736,6 +43648,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -42817,6 +43730,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -43081,6 +43995,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -43413,6 +44328,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -44055,6 +44971,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -44388,6 +45305,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -44469,6 +45387,7 @@ type linkItem_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -46353,6 +47272,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -46434,6 +47354,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -46698,6 +47619,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -47030,6 +47952,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -47673,6 +48596,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -48304,6 +49228,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -48385,6 +49310,7 @@ type pageArchive_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -49947,6 +50873,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -50028,6 +50955,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -50292,6 +51220,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -50624,6 +51553,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -51267,6 +52197,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -51600,6 +52531,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -51681,6 +52613,7 @@ type pageDefault_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -52929,6 +53862,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -53010,6 +53944,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -53274,6 +54209,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -53606,6 +54542,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -54248,6 +55185,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -54581,6 +55519,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -54662,6 +55601,7 @@ type projectCategory_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -55865,6 +56805,7 @@ type project_Entry implements ElementInterface & EntryInterface {
 
   """The current revision for the entry."""
   currentRevision: EntryInterface
+  date: DateTime
 
   """The date the element was created."""
   dateCreated: DateTime
@@ -56226,6 +57167,7 @@ type project_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -56307,6 +57249,7 @@ type project_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -56571,6 +57514,7 @@ type project_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -56903,6 +57847,7 @@ type project_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -57546,6 +58491,7 @@ type project_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -58475,6 +59421,7 @@ type project_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -58556,6 +59503,7 @@ type project_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -59801,6 +60749,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -59882,6 +60831,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -60146,6 +61096,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -60478,6 +61429,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -61120,6 +62072,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -61453,6 +62406,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -61534,6 +62488,7 @@ type serviceGroupItem_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -62781,6 +63736,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -62862,6 +63818,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -63126,6 +64083,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -63644,6 +64602,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -64286,6 +65245,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
     before: String
     controls: Boolean
     customLink: [QueryArgument]
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -64619,6 +65579,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
     Narrows the query results to only entries that were posted before a certain date.
     """
     before: String
+    date: [QueryArgument]
 
     """Narrows the query results based on the elements’ creation dates."""
     dateCreated: [String]
@@ -64700,6 +65661,7 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
 
     """Sets the limit for paginated results."""
     limit: Int
+    media: [QueryArgument]
 
     """
     Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
@@ -65253,3 +66215,3175 @@ type serviceGroup_Entry implements ElementInterface & EntryInterface {
 }
 
 union serviceGroupsFieldEntryUnion = serviceGroup_Entry
+
+union splashscreenSectionEntryUnion = splashscreen_Entry
+
+type splashscreen_Entry implements ElementInterface & EntryInterface {
+  """Return a number of related elements for a field."""
+  _count(
+    """The handle of the field that holds the relations."""
+    field: String!
+  ): Int
+
+  """
+  The entry’s ancestors, if the section is a structure. Accepts the same arguments as the `entries` query.
+  """
+  ancestors(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface!]!
+
+  """Whether the element is archived."""
+  archived: Boolean
+
+  """Returns the entry’s canonical ID."""
+  canonicalId: Int
+
+  """Returns the entry’s canonical UUID."""
+  canonicalUid: String
+
+  """
+  The entry’s children, if the section is a structure. Accepts the same arguments as the `entries` query.
+  """
+  children(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface!]!
+
+  """The current revision for the entry."""
+  currentRevision: EntryInterface
+
+  """The date the element was created."""
+  dateCreated: DateTime
+
+  """The date the element was last updated."""
+  dateUpdated: DateTime
+
+  """
+  The entry’s descendants, if the section is a structure. Accepts the same arguments as the `entries` query.
+  """
+  descendants(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface!]!
+
+  """The draft ID (from the `drafts` table)."""
+  draftId: Int
+
+  """The name of the draft."""
+  draftName: String
+
+  """The notes for the draft."""
+  draftNotes: String
+
+  """The drafts for the entry."""
+  drafts(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    date: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+    description: [QueryArgument]
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    media: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+    relatedProjects: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface]
+
+  """Whether the element is enabled."""
+  enabled: Boolean
+
+  """Whether the element is enabled for the site."""
+  enabledForSite: Boolean
+
+  """The expiry date of the entry."""
+  expiryDate: DateTime
+
+  """The handle of the field that contains the entry."""
+  fieldHandle: String
+
+  """The ID of the field that contains the entry."""
+  fieldId: Int
+
+  """The ID of the entity"""
+  id: ID
+
+  """Returns whether this is a draft."""
+  isDraft: Boolean
+
+  """Returns whether this is a revision."""
+  isRevision: Boolean
+
+  """Returns whether this is an unpublished draft."""
+  isUnpublishedDraft: Boolean
+
+  """The language of the site element is associated with."""
+  language: String
+
+  """The element’s level within its structure"""
+  level: Int
+
+  """The element’s left position within its structure."""
+  lft: Int
+
+  """The same element in other locales."""
+  localized(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+    autoplay: Boolean
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    controls: Boolean
+    customLink: [QueryArgument]
+    date: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+    description: [QueryArgument]
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    link: [QueryArgument]
+    media: [QueryArgument]
+    mediaOrientation: [QueryArgument]
+    mediaOrientationMobile: [QueryArgument]
+    mediaRatio: [QueryArgument]
+    mediaRatioCustomH: [QueryArgument]
+    mediaRatioCustomW: [QueryArgument]
+    mediaRatioLandscape: [QueryArgument]
+    mediaRatioLandscapeCustomH: [QueryArgument]
+    mediaRatioLandscapeCustomW: [QueryArgument]
+    mediaRatioMobile: [QueryArgument]
+    mediaRatioMobileCustomH: [QueryArgument]
+    mediaRatioMobileCustomW: [QueryArgument]
+    mediaRatioMobileEnabled: Boolean
+    mediaRatioMobileLandscape: [QueryArgument]
+    mediaRatioMobileLandscapeCustomH: [QueryArgument]
+    mediaRatioMobileLandscapeCustomW: [QueryArgument]
+    name: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+    relatedProjects: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+    role: [QueryArgument]
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+    showCaption: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+    text: [QueryArgument]
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface!]!
+  media(
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+    averageColor: [QueryArgument]
+    caption: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """
+    Narrows the query results based on the assets’ files’ last-modified dates.
+    """
+    dateModified: String
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """Narrows the query results based on the assets’ filenames."""
+    filename: [String]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on the folders the assets belong to, per the folders’ IDs.
+    """
+    folderId: [QueryArgument]
+
+    """
+    Narrows the query results based on whether the assets have alternative text.
+    """
+    hasAlt: Boolean
+
+    """Narrows the query results based on the assets’ image heights."""
+    height: [String]
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Broadens the query results to include assets from any of the subfolders of the folder specified by `folderId`.
+    """
+    includeSubfolders: Boolean
+
+    """Narrows the query results based on the assets’ file kinds."""
+    kind: [String]
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the assets’ file sizes (in bytes)."""
+    size: [String]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """
+    Narrows the query results based on the user the assets were uploaded by, per the user’s ID.
+    """
+    uploader: QueryArgument
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Narrows the query results based on the volumes the assets belong to, per the volumes’ handles.
+    """
+    volume: [String]
+
+    """
+    Narrows the query results based on the volumes the assets belong to, per the volumes’ IDs.
+    """
+    volumeId: [QueryArgument]
+
+    """Narrows the query results based on the assets’ image widths."""
+    width: [String]
+
+    """A list of transform handles to preload."""
+    withTransforms: [String]
+  ): [AssetInterface]!
+
+  """
+  Returns the next element relative to this one, from a given set of criteria.
+  """
+  next(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+    autoplay: Boolean
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    controls: Boolean
+    customLink: [QueryArgument]
+    date: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+    description: [QueryArgument]
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    link: [QueryArgument]
+    media: [QueryArgument]
+    mediaOrientation: [QueryArgument]
+    mediaOrientationMobile: [QueryArgument]
+    mediaRatio: [QueryArgument]
+    mediaRatioCustomH: [QueryArgument]
+    mediaRatioCustomW: [QueryArgument]
+    mediaRatioLandscape: [QueryArgument]
+    mediaRatioLandscapeCustomH: [QueryArgument]
+    mediaRatioLandscapeCustomW: [QueryArgument]
+    mediaRatioMobile: [QueryArgument]
+    mediaRatioMobileCustomH: [QueryArgument]
+    mediaRatioMobileCustomW: [QueryArgument]
+    mediaRatioMobileEnabled: Boolean
+    mediaRatioMobileLandscape: [QueryArgument]
+    mediaRatioMobileLandscapeCustomH: [QueryArgument]
+    mediaRatioMobileLandscapeCustomW: [QueryArgument]
+    name: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+    relatedProjects: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+    role: [QueryArgument]
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+    showCaption: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+    text: [QueryArgument]
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): EntryInterface
+
+  """The ID of the entry’s owner element."""
+  ownerId: Int
+
+  """The entry’s parent, if the section is a structure."""
+  parent(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): EntryInterface
+
+  """The entry’s post date."""
+  postDate: DateTime
+
+  """
+  Returns the previous element relative to this one, from a given set of criteria.
+  """
+  prev(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+    autoplay: Boolean
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    controls: Boolean
+    customLink: [QueryArgument]
+    date: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+    description: [QueryArgument]
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    link: [QueryArgument]
+    media: [QueryArgument]
+    mediaOrientation: [QueryArgument]
+    mediaOrientationMobile: [QueryArgument]
+    mediaRatio: [QueryArgument]
+    mediaRatioCustomH: [QueryArgument]
+    mediaRatioCustomW: [QueryArgument]
+    mediaRatioLandscape: [QueryArgument]
+    mediaRatioLandscapeCustomH: [QueryArgument]
+    mediaRatioLandscapeCustomW: [QueryArgument]
+    mediaRatioMobile: [QueryArgument]
+    mediaRatioMobileCustomH: [QueryArgument]
+    mediaRatioMobileCustomW: [QueryArgument]
+    mediaRatioMobileEnabled: Boolean
+    mediaRatioMobileLandscape: [QueryArgument]
+    mediaRatioMobileLandscapeCustomH: [QueryArgument]
+    mediaRatioMobileLandscapeCustomW: [QueryArgument]
+    name: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+    relatedProjects: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+    role: [QueryArgument]
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+    showCaption: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+    text: [QueryArgument]
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): EntryInterface
+
+  """The revision ID (from the `revisions` table)."""
+  revisionId: Int
+
+  """The revision notes (from the `revisions` table)."""
+  revisionNotes: String
+
+  """The revisions for the entry."""
+  revisions(
+    """
+    Narrows the query results to only entries that were posted on or after a certain date.
+    """
+    after: String
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `ancestorOf`.
+    """
+    ancestorDist: Int
+
+    """
+    Narrows the query results to only elements that are ancestors of another element in its structure, provided by its ID.
+    """
+    ancestorOf: Int
+    archiveType: [QueryArgument]
+
+    """Narrows the query results to only elements that have been archived."""
+    archived: Boolean
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to.
+    """
+    authorGroup: [String]
+
+    """
+    Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+    """
+    authorGroupId: [QueryArgument]
+
+    """Narrows the query results based on the entries’ authors."""
+    authorId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that were posted before a certain date.
+    """
+    before: String
+    date: [QueryArgument]
+
+    """Narrows the query results based on the elements’ creation dates."""
+    dateCreated: [String]
+
+    """Narrows the query results based on the elements’ last-updated dates."""
+    dateUpdated: [String]
+
+    """
+    Narrows the query results to only elements that are up to a certain distance away from the element in its structure specified by `descendantOf`.
+    """
+    descendantDist: Int
+
+    """
+    Narrows the query results to only elements that are descendants of another element in its structure provided by its ID.
+    """
+    descendantOf: Int
+    description: [QueryArgument]
+
+    """The drafts’ creator ID"""
+    draftCreator: Int
+
+    """The ID of the draft to return (from the `drafts` table)"""
+    draftId: Int
+
+    """
+    Narrows the query results to only drafts of a given element.  Set to `false` to fetch unpublished drafts.
+    """
+    draftOf: QueryArgument
+
+    """Whether draft elements should be returned."""
+    drafts: Boolean
+
+    """Whether to only return entries that the user has permission to edit."""
+    editable: Boolean
+
+    """Narrows the query results based on the entries’ expiry dates."""
+    expiryDate: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by.
+    """
+    field: [String]
+
+    """
+    Narrows the query results based on the field the entries are contained by, per the fields’ IDs.
+    """
+    fieldId: [QueryArgument]
+
+    """
+    Causes the query results to be returned in the order specified by the `id` argument.
+    """
+    fixedOrder: Boolean
+
+    """
+    Narrows the query results based on whether the elements have any descendants in their structure.
+    """
+    hasDescendants: Boolean
+
+    """Narrows the query results based on the elements’ IDs."""
+    id: [QueryArgument]
+
+    """Causes the query results to be returned in reverse order."""
+    inReverse: Boolean
+
+    """
+    Determines which site(s) the elements should be queried in, based on their language.
+    """
+    language: [String]
+
+    """
+    Narrows the query results based on whether the elements are “leaves” in their structure (element with no descendants).
+    """
+    leaves: Boolean
+
+    """
+    Narrows the query results based on the elements’ level within the structure.
+    """
+    level: Int
+
+    """Sets the limit for paginated results."""
+    limit: Int
+    media: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately after another element in its structure, provided by its ID.
+    """
+    nextSiblingOf: Int
+
+    """
+    Narrows the query results to elements that do not relate to the provided element IDs.
+    """
+    notRelatedTo: [QueryArgument]
+
+    """Sets the offset for paginated results."""
+    offset: Int
+
+    """Sets the field the returned elements should be ordered by."""
+    orderBy: String
+    orgSchema: [QueryArgument]
+
+    """
+    Narrows the query results based on the owner element of the entries, per the owners’ IDs.
+    """
+    ownerId: [QueryArgument]
+
+    """
+    Narrows the query results to only entries that are positioned after another element in its structure, provided by its ID.
+    """
+    positionedAfter: Int
+
+    """
+    Narrows the query results to only entries that are positioned before another element in its structure, provided by its ID.
+    """
+    positionedBefore: Int
+
+    """Narrows the query results based on the entries’ post dates."""
+    postDate: [String]
+
+    """
+    Determines which site should be selected when querying multi-site elements.
+    """
+    preferSites: [QueryArgument]
+
+    """
+    Narrows the query results to only the entry that comes immediately before another element in its structure, provided by its ID.
+    """
+    prevSiblingOf: Int
+
+    """
+    Narrows the query results based on the primary owner element of the entries, per the owners’ IDs.
+    """
+    primaryOwnerId: [QueryArgument]
+    projectCategory: [QueryArgument]
+
+    """Whether provisional drafts should be returned."""
+    provisionalDrafts: Boolean
+
+    """Narrows the query results based on a reference string."""
+    ref: [String]
+    relatedProjects: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to the provided element IDs. This argument is ignored, if `relatedToAll` is also used.
+    """
+    relatedTo: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to *all* of the provided element IDs. Using this argument will cause `relatedTo` argument to be ignored. **This argument is deprecated.** `relatedTo: ["and", ...ids]` should be used instead.
+    """
+    relatedToAll: [QueryArgument]
+
+    """
+    Narrows the query results to elements that relate to an asset list defined with this argument.
+    """
+    relatedToAssets: [AssetRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a category list defined with this argument.
+    """
+    relatedToCategories: [CategoryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to an entry list defined with this argument.
+    """
+    relatedToEntries: [EntryRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a tag list defined with this argument.
+    """
+    relatedToTags: [TagRelationCriteriaInput]
+
+    """
+    Narrows the query results to elements that relate to a use list defined with this argument.
+    """
+    relatedToUsers: [UserRelationCriteriaInput]
+
+    """The revisions’ creator ID"""
+    revisionCreator: Int
+
+    """The ID of the revision to return (from the `revisions` table)"""
+    revisionId: Int
+
+    """The source element ID that revisions should be returned for"""
+    revisionOf: QueryArgument
+
+    """Whether revision elements should be returned."""
+    revisions: Boolean
+
+    """Narrows the query results to only elements that match a search query."""
+    search: String
+
+    """
+    Defines the default options that should be applied terms within the `search` argument.
+    """
+    searchTermOptions: SearchTermOptions
+
+    """
+    Narrows the query results based on the section handles the entries belong to.
+    """
+    section: [String]
+
+    """
+    Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+    """
+    sectionId: [QueryArgument]
+    seo: [QueryArgument]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    site: [String]
+
+    """
+    Determines which site(s) the elements should be queried in. Defaults to the current (requested) site.
+    """
+    siteId: [QueryArgument]
+
+    """
+    Narrows the query results based on the unique identifier for an element-site relation.
+    """
+    siteSettingsId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ slugs."""
+    slug: [String]
+
+    """Narrows the query results based on the elements’ statuses."""
+    status: [String]
+
+    """Determines which structure data should be joined into the query."""
+    structureId: Int
+
+    """Narrows the query results based on the elements’ titles."""
+    title: [String]
+
+    """
+    Narrows the query results to only elements that have been soft-deleted.
+    """
+    trashed: Boolean
+
+    """Narrows the query results based on the entries’ entry type handles."""
+    type: [String]
+
+    """
+    Narrows the query results based on the entries’ entry types, per the types’ IDs.
+    """
+    typeId: [QueryArgument]
+
+    """Narrows the query results based on the elements’ UIDs."""
+    uid: [String]
+
+    """
+    Determines whether only elements with unique IDs should be returned by the query.
+    """
+    unique: Boolean
+
+    """Narrows the query results based on the elements’ URIs."""
+    uri: [String]
+
+    """
+    Whether canonical elements should be replaced with provisional drafts if those exist.
+    """
+    withProvisionalDrafts: Boolean
+
+    """
+    Explicitly determines whether the query should join in the structure data.
+    """
+    withStructure: Boolean
+  ): [EntryInterface]
+
+  """The element’s right position within its structure."""
+  rgt: Int
+
+  """The element’s structure’s root ID"""
+  root: Int
+
+  """
+  The element’s search score, if the `search` parameter was used when querying for the element.
+  """
+  searchScore: Int
+
+  """The handle of the section that contains the entry."""
+  sectionHandle: String
+
+  """The ID of the section that contains the entry."""
+  sectionId: Int
+  seo: Ether_SeoData
+
+  """The handle of the site the element is associated with."""
+  siteHandle: String
+
+  """The ID of the site the element is associated with."""
+  siteId: Int
+
+  """The unique identifier for an element-site relation."""
+  siteSettingsId: ID
+
+  """The element’s slug."""
+  slug: String
+
+  """The entry’s position within the field that contains it."""
+  sortOrder: Int
+
+  """Returns the entry’s canonical ID."""
+  sourceId: Int @deprecated(reason: "this field has been deprecated since Craft 3.7.7. Use `canonicalId` instead.")
+
+  """Returns the entry’s canonical UUID."""
+  sourceUid: String @deprecated(reason: "this field has been deprecated since Craft 3.7.7. Use `canonicalUid` instead.")
+
+  """The element’s status."""
+  status: String
+
+  """The element’s structure ID."""
+  structureId: Int
+
+  """The element’s title."""
+  title: String
+
+  """Whether the element has been soft-deleted."""
+  trashed: Boolean
+
+  """The handle of the entry type that contains the entry."""
+  typeHandle: String!
+
+  """The ID of the entry type that contains the entry."""
+  typeId: Int!
+
+  """The UID of the entity"""
+  uid: String
+
+  """The element’s URI."""
+  uri: String
+
+  """The element’s full URL"""
+  url: String
+}

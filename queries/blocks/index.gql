@@ -1,0 +1,5 @@
+fragment Blocks on ElementInterface {
+  ...BlockGrid
+  ...BlockMedia
+  ...BlockText
+}

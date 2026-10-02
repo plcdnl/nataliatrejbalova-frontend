@@ -1,0 +1,4 @@
+fragment BlockText on blockText_Entry {
+  ...EntryInterfaceType
+  text
+}

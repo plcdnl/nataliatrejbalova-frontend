@@ -23,6 +23,7 @@ query Entries(
     site: $site
   ) {
     ...EntryInterfaceType
+    ...ProjectThumb
   }
   entryCount(
     section: $section

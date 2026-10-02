@@ -1,0 +1,23 @@
+fragment PageEntry on pageDefault_Entry {
+  ...EntryInterfaceType
+  blocks {
+    ...Blocks
+  }
+  seo {
+    ...SEO
+  }
+  orgSchema {
+    ...OrgSchemaFieldPieces
+  }
+}
+
+fragment PageArchiveEntry on pageArchive_Entry {
+  ...EntryInterfaceType
+  archiveType
+  seo {
+    ...SEO
+  }
+  orgSchema {
+    ...OrgSchemaFieldPieces
+  }
+}

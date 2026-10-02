@@ -1,0 +1,41 @@
+fragment ColumnBlockText on columnBlockText_Entry {
+  ...EntryInterfaceType
+  text
+}
+
+fragment ColumnBlockMedia on columnBlockMedia_Entry {
+  ...EntryInterfaceType
+  media {
+    ...Media
+  }
+  mediaOrientation
+  mediaOrientationMobile
+  mediaRatio
+  mediaRatioCustomW
+  mediaRatioCustomH
+  mediaRatioLandscape
+  mediaRatioLandscapeCustomW
+  mediaRatioLandscapeCustomH
+  mediaRatioMobileEnabled
+  mediaRatioMobile
+  mediaRatioMobileCustomW
+  mediaRatioMobileCustomH
+  mediaRatioMobileLandscape
+  mediaRatioMobileLandscapeCustomW
+  mediaRatioMobileLandscapeCustomH
+}
+
+fragment GridColumn on columnBlocks_Entry {
+  ...EntryInterfaceType
+  columnBlocks {
+    ...ColumnBlockText
+    ...ColumnBlockMedia
+  }
+}
+
+fragment BlockGrid on blockGrid_Entry {
+  ...EntryInterfaceType
+  columns {
+    ...GridColumn
+  }
+}

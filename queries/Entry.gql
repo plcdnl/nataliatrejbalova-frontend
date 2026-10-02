@@ -17,5 +17,8 @@ query Entry(
     hasDescendants: $hasDescendants
   ) {
     ...EntryInterfaceType
+    ...PageEntry
+    ...PageArchiveEntry
+    ...Project
   }
 }

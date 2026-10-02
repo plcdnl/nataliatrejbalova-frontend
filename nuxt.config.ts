@@ -13,13 +13,13 @@ export default defineNuxtConfig({
   modules: [
     '@studio-fes/nuxt-remote-svg',
   ],
-  app: {
-    head: {
-      // Un solo rel="icon": nuxt-seo-utils non aggiunge gli altri, app.vue lo sovrascrive via key
-      link: [{ key: 'favicon', rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' }],
-    },
-  },
-  css: ['~/assets/globals.css'],
+  components: [
+    { path: '~/components', pathPrefix: false },
+  ],
+  css: [
+    '~/assets/globals.css',
+    '@blossom-carousel/vue/style.css',
+  ],
 
   runtimeConfig: {
     mediaProxyHosts,
@@ -45,13 +45,6 @@ export default defineNuxtConfig({
   fonts: {
     families: [
       {
-        name: 'AVSyntecaGarutti',
-        provider: 'local',
-        styles: ['normal', 'italic'],
-        weights: [700],
-        display: 'block',
-      },
-      {
         name: 'Adobe Caslon Pro',
         provider: 'adobe',
         styles: ['normal', 'italic'],
@@ -76,14 +69,6 @@ export default defineNuxtConfig({
     locales,
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
-  },
-
-  image: {
-    providers: {
-      mediaProxy: {
-        provider: '~/providers/media-proxy',
-      },
-    },
   },
 
   multiCache: {

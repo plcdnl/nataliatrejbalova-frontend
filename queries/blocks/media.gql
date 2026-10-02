@@ -1,0 +1,24 @@
+fragment BlockMedia on blockMedia_Entry {
+  ...EntryInterfaceType
+  media {
+    ...Media
+  }
+  autoplay
+  controls
+  showCaption
+  mediaOrientation
+  mediaOrientationMobile
+  mediaRatio
+  mediaRatioCustomW
+  mediaRatioCustomH
+  mediaRatioLandscape
+  mediaRatioLandscapeCustomW
+  mediaRatioLandscapeCustomH
+  mediaRatioMobileEnabled
+  mediaRatioMobile
+  mediaRatioMobileCustomW
+  mediaRatioMobileCustomH
+  mediaRatioMobileLandscape
+  mediaRatioMobileLandscapeCustomW
+  mediaRatioMobileLandscapeCustomH
+}

@@ -7,5 +7,9 @@ fragment Media on media_Asset {
   height
   format
   kind
+  averageColor
+  focalPoint
+  hasFocalPoint
+  size
   __typename
 }

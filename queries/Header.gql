@@ -1,0 +1,24 @@
+fragment LinkItem on linkItem_Entry {
+  id
+  title
+  customLink {
+    label
+    url
+    target
+    type
+    elementTitle
+  }
+}
+
+fragment Header on header_Entry {
+  ...EntryInterfaceType
+  links {
+    ...LinkItem
+  }
+}
+
+query Header($site: [String]) {
+  headerEntries(site: $site) {
+    ...Header
+  }
+}

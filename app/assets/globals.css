@@ -38,7 +38,7 @@ html {
 
 body {
   -webkit-tap-highlight-color: transparent;
-  --uno: typo-sans-1;
+  --uno: typo-serif-1;
 }
 
 ::selection {
@@ -74,14 +74,13 @@ textarea:-webkit-autofill:hover {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 
   @screen lg {
-    gap: calc(var(--spacing) * 15);
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 
 .container {
   width: 100%;
-  padding-inline: calc(var(--spacing) * 2.5);
+  padding-inline: calc(var(--spacing) * 3);
 
   @screen lg {
     padding-inline: calc(var(--spacing) * 5);

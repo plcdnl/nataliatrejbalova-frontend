@@ -1,0 +1,21 @@
+fragment ProjectThumb on project_Entry {
+  ...EntryInterfaceType
+  year: postDate @formatDateTime(format: "Y")
+}
+
+fragment Project on project_Entry {
+  ...ProjectThumb
+  description
+  blocks {
+    ...Blocks
+  }
+  seo {
+    ...SEO
+  }
+  relatedProjects {
+    ...ProjectThumb
+  }
+  orgSchema {
+    ...OrgSchemaFieldPieces
+  }
+}

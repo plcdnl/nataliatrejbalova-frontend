@@ -44,7 +44,7 @@ export default defineConfig({
     'lay-fluid': 'grid grid-flow-row auto-rows-fr [grid-auto-columns:minmax(0,1fr)]',
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
-    'typo-sans-1': 'font-sans text-4 leading-[1.2]',
+    'typo-serif-1': 'font-serif text-4 leading-[1.2]',
   },
 
   theme: {
@@ -62,7 +62,6 @@ export default defineConfig({
       'custom-circ': 'cubic-bezier(0.25, 1, 0.5, 1)',
     },
     font: {
-      sans: '"AVSyntecaGarutti", Arial, sans-serif',
       serif: '"Adobe Caslon Pro", Georgia, serif',
     },
   },

@@ -1,3 +1,3 @@
-fragment OrgSchema on ToolkitOrgSchemaFieldPiece {
+fragment OrgSchemaFieldPieces on ToolkitOrgSchemaFieldPiece {
   json
 }

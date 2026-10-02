@@ -23,13 +23,25 @@ const media = computed(() => {
 const route = useRoute()
 const roller = computed(() => route.query.roller === 'true' ? '3d' : route.query.roller)
 
-const logo = computed(() => (now.value % LOGO_SIZES.length) + 1)
+const logo = ref((now.value % LOGO_SIZES.length) + 1)
 const logoStyle = computed(() => logoMask(`/logo/alberto_garutti-boxed-${logo.value}.svg`))
 
 const selections = ['selection:bg-peach', 'selection:bg-blush', 'selection:bg-sky', 'selection:bg-lime']
 const selection = computed(() => selections[now.value % selections.length])
 
 const isOpen = useIsInfoOpen()
+
+// The panel keeps the logo it was opened with, so it doesn't swap while fading out
+const panelLogo = ref(logo.value)
+
+watch(isOpen, (open) => {
+  if (open) {
+    panelLogo.value = logo.value
+    return
+  }
+  const next = Math.floor(Math.random() * (LOGO_SIZES.length - 1)) + 1
+  logo.value = next >= logo.value ? next + 1 : next
+})
 </script>
 
 <template>
@@ -70,6 +82,6 @@ const isOpen = useIsInfoOpen()
         :style="logoStyle"
       />
     </button>
-    <InfoPanel v-model:open="isOpen" :logo :body="page.body" :sidebar="page.sidebar" />
+    <InfoPanel v-model:open="isOpen" :logo="panelLogo" :body="page.body" :sidebar="page.sidebar" />
   </div>
 </template>

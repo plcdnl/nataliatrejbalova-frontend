@@ -63,6 +63,7 @@ export default defineConfig({
     },
     font: {
       sans: '"AVSyntecaGarutti", Arial, sans-serif',
+      serif: '"Adobe Caslon Pro", Georgia, serif',
     },
   },
 })

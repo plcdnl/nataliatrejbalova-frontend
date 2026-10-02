@@ -51,7 +51,16 @@ export default defineNuxtConfig({
         weights: [700],
         display: 'block',
       },
+      {
+        name: 'Adobe Caslon Pro',
+        provider: 'adobe',
+        styles: ['normal', 'italic'],
+        weights: [600, 700],
+      },
     ],
+    adobe: {
+      id: ['soh8sle'],
+    },
   },
 
   graphqlMiddleware: {

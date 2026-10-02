@@ -1,3 +1,4 @@
+import type { PresetWind4Theme } from 'unocss'
 import { defineConfig, presetWind4, transformerDirectives } from 'unocss'
 
 export default defineConfig({
@@ -44,7 +45,7 @@ export default defineConfig({
     'lay-fluid': 'grid grid-flow-row auto-rows-fr [grid-auto-columns:minmax(0,1fr)]',
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
-    'typo-serif-1': 'font-serif text-4.5 leading-[1.2]',
+    'typo-serif-1': 'font-serif text-5 leading-[1.2]',
   },
 
   theme: {

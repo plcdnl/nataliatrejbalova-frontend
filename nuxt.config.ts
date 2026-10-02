@@ -46,14 +46,19 @@ export default defineNuxtConfig({
     families: [
       {
         name: 'Adobe Caslon Pro',
-        provider: 'adobe',
-        styles: ['normal', 'italic'],
-        weights: [600, 700],
+        src: ['/ACaslonPro-Regular.woff2', '/ACaslonPro-Regular.woff'],
+        weight: 400,
+        style: 'normal',
+        fallbacks: ['Georgia'],
+      },
+      {
+        name: 'Adobe Caslon Pro',
+        src: ['/ACaslonPro-Italic.woff2', '/ACaslonPro-Italic.woff'],
+        weight: 400,
+        style: 'italic',
+        fallbacks: ['Georgia'],
       },
     ],
-    adobe: {
-      id: ['soh8sle'],
-    },
   },
 
   graphqlMiddleware: {

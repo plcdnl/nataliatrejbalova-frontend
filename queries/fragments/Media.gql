@@ -3,6 +3,7 @@ fragment Media on media_Asset {
   url
   alt
   title
+  caption
   width
   height
   format

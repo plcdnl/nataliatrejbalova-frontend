@@ -12,7 +12,7 @@ useCraftSEO(entry)
 
 <template>
   <PageContent v-if="entry.__typename === 'pageArchive_Entry' && entry.archiveType === 'projects'">
-    <ArchiveProjects />
+    <ArchiveProjects :categories="entry.projectCategory?.map(category => category?.id)" />
   </PageContent>
   <PageContent v-else :title="entry.title">
     <BlocksRenderer v-if="entry.__typename === 'pageDefault_Entry'" :blocks="(entry.blocks as BlocksInterface[])" />

@@ -43,8 +43,8 @@ const videoProps = computed(() => ({
             :style="ratioVars"
             :img-props="{ sizes: '100vw lg:50vw', alt: media.alt || media.title || undefined }"
           />
-          <figcaption v-if="data.showCaption && media.title">
-            <Text :text="media.title" />
+          <figcaption v-if="data.showCaption && media.caption">
+            <Text :html="media.caption" />
           </figcaption>
         </figure>
       </component>

@@ -73,10 +73,10 @@ const videoProps = computed(() => ({
 <style scoped>
 /* tra due blockMedia consecutivi la spaziatura è dimezzata (i margini collassano) */
 .section.padded.block-media:has(+ .block-media) {
-  margin-bottom: calc(var(--spacing) * 3);
+  margin-bottom: calc(var(--spacing) * 1.5);
 }
 .section.padded.block-media + .block-media {
-  margin-top: calc(var(--spacing) * 3);
+  margin-top: calc(var(--spacing) * 1.5);
 }
 
 .media-ratio {

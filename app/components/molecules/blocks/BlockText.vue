@@ -10,6 +10,6 @@ defineProps<BlockTextProps>()
 
 <template>
   <Section padded class="layout-grid">
-    <Text :html="data.text ?? ''" class="col-span-6 space-y-1em lg:col-start-6" />
+    <Text :html="data.text ?? ''" class="text-links col-span-6 space-y-1em lg:col-start-5" />
   </Section>
 </template>

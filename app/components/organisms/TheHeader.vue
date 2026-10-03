@@ -65,14 +65,14 @@ function buildNavTimeline() {
   if (!$nav.value)
     return
 
-  gsap.set($nav.value, { clearProps: 'clipPath' })
+  gsap.set($nav.value, { clearProps: '--reveal' })
   navTl = gsap.timeline({ paused: true })
 
   if (!isDesktop.value) {
-    navTl.fromTo($nav.value, { clipPath: 'inset(0% 0% 100% 0%)' }, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 0.6,
-      ease: 'power2.inOut',
+    navTl.fromTo($nav.value, { '--reveal': 0 }, {
+      '--reveal': 1,
+      duration: 1,
+      ease: 'power3.inOut',
     }, 0)
   }
 
@@ -82,7 +82,7 @@ function buildNavTimeline() {
     duration: REVEAL.duration,
     ease: REVEAL.ease,
     stagger: REVEAL.stagger,
-  }, isDesktop.value ? 0 : 0.25)
+  }, isDesktop.value ? 0 : 0.35) // su mobile le voci seguono il bordo sfumato mentre scende
 
   navTl.progress(isNavVisible.value ? 1 : 0)
 }
@@ -152,7 +152,7 @@ const siteConfig = useSiteConfig()
       v-if="links.length"
       id="main-nav"
       ref="nav"
-      class="nav container pb-3 flex flex-col items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-[calc(50svh+0.75rem)] lt-lg:bg-white lg:pointer-events-none lt-lg:bottom-0"
+      class="nav container pb-3 flex flex-col items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-[calc(1.5rem+1lh)] lg:pointer-events-none"
       :class="{ invisible: isHome && !isMounted }"
     >
       <CraftLink
@@ -168,7 +168,38 @@ const siteConfig = useSiteConfig()
 <style scoped>
 @screen lt-lg {
   .nav {
-    clip-path: inset(0% 0% 100% 0%);
+    /* maschera con bordo sfumato al posto del clip-path: --reveal va da 0 (nascosto) a 1 (visibile) */
+    --reveal: 0;
+    --reveal-fade: 15rem;
+    mask-image: linear-gradient(
+      to bottom,
+      black calc(var(--reveal) * (100% + var(--reveal-fade)) - var(--reveal-fade)),
+      transparent calc(var(--reveal) * (100% + var(--reveal-fade)))
+    );
+    /* fondo bianco che sfuma sotto le voci, con gradiente eased per evitare lo spigolo dove inizia la sfumatura */
+    --bg-fade: 14rem;
+    padding-bottom: var(--bg-fade);
+    background:
+      linear-gradient(white, white) top / 100% calc(100% - var(--bg-fade)) no-repeat,
+      linear-gradient(
+        to bottom,
+        rgb(255 255 255 / 1) 0%,
+        rgb(255 255 255 / 0.987) 8.1%,
+        rgb(255 255 255 / 0.951) 15.5%,
+        rgb(255 255 255 / 0.896) 22.5%,
+        rgb(255 255 255 / 0.825) 29%,
+        rgb(255 255 255 / 0.741) 35.3%,
+        rgb(255 255 255 / 0.648) 41.2%,
+        rgb(255 255 255 / 0.55) 47.1%,
+        rgb(255 255 255 / 0.45) 52.9%,
+        rgb(255 255 255 / 0.352) 58.8%,
+        rgb(255 255 255 / 0.259) 64.7%,
+        rgb(255 255 255 / 0.175) 71%,
+        rgb(255 255 255 / 0.104) 77.5%,
+        rgb(255 255 255 / 0.049) 84.5%,
+        rgb(255 255 255 / 0.013) 91.9%,
+        rgb(255 255 255 / 0) 100%
+      ) bottom / 100% var(--bg-fade) no-repeat;
   }
 }
 </style>

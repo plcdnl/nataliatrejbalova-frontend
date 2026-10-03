@@ -9,5 +9,5 @@ defineProps<ColumnBlockTextProps>()
 </script>
 
 <template>
-  <Text :html="data.text ?? ''" />
+  <Text :html="data.text ?? ''" class="text-links" />
 </template>

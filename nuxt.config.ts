@@ -66,7 +66,7 @@ export default defineNuxtConfig({
   },
 
   gsap: {
-    plugins: ['CustomEase', 'Flip'],
+    plugins: ['CustomEase', 'Flip', 'ScrollTrigger'],
   },
 
   i18n: {

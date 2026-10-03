@@ -46,6 +46,9 @@ export default defineConfig({
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
     'typo-serif-1': 'font-serif text-5 leading-[1.2]',
+
+    // link dentro testi rich text (html da Craft)
+    'text-links': '[&_a]:motion-base [&_a]:text-gray-400 [&_a:hover]:text-black',
   },
 
   theme: {

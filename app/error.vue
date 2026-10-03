@@ -41,7 +41,7 @@ async function goHome() {
         {{ siteConfig.name }}
       </Anchor>
 
-      <p class="error-reveal col-span-2 lg:col-start-6" style="--i: 1">
+      <p class="error-reveal col-span-2 lg:col-start-5" style="--i: 1">
         {{ error.status }}
       </p>
 

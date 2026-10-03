@@ -34,7 +34,7 @@ const columns = computed(() => props.data.columns ?? [])
 
 .gridColumn:first-child {
   @screen lg {
-    grid-column-start: 6;
+    grid-column-start: 5;
   }
 }
 </style>

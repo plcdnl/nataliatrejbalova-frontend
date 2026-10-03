@@ -23,12 +23,13 @@ const videoProps = computed(() => ({
 
 <template>
   <Section padded class="layout-grid">
-    <div class="col-span-6 relative lg:col-start-6">
+    <div class="col-span-6 relative lg:col-start-5">
       <component
         :is="isCarousel ? BlossomCarousel : 'div'"
         :id="isCarousel ? carouselId : undefined"
         :as="isCarousel ? 'div' : undefined"
         class="flex gap-1.5 w-full snap-x snap-mandatory"
+        :class="{ 'of-x-auto of-y-hidden [scrollbar-width:none]': isCarousel }"
       >
         <figure
           v-for="media in items"

@@ -146,7 +146,8 @@ useHead({
                 >
                   <CraftMedia
                     :media="item.media"
-                    class="size-full min-h-0 block object-contain"
+                    class="size-full min-h-0 block"
+                    fit="contain"
                     :img-props="{
                       sizes: '100vw lg:80vw',
                       alt: item.media.alt || item.media.title || undefined,

@@ -51,7 +51,7 @@ const videoProps = computed(() => ({
           <CraftMedia
             :media
             :video-props="videoProps"
-            class="media-ratio w-full block object-cover"
+            class="media-ratio w-full block"
             :style="mediaStyle(media)"
             :img-props="{
               sizes: '100vw lg:50vw',

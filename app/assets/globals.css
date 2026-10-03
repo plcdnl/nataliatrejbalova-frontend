@@ -101,3 +101,14 @@ textarea:-webkit-autofill:hover {
     display: none !important;
   }
 }
+
+/* konami code */
+html.is-inverted {
+  background-color: white;
+  filter: invert(1);
+
+  /* il bottone per uscire resta rosso anche invertito */
+  .konamiDisable {
+    filter: invert(1);
+  }
+}

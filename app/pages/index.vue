@@ -39,7 +39,7 @@ watch(() => isHomeRoute(router.currentRoute.value), (isHome) => {
       :media
       :video-props="{ autoplay: true, muted: true, loop: true, controls: false, pauseOnLeave: false }"
       :img-props="{ sizes: '1024px lg:100vw', alt: '' }"
-      class="size-full object-cover"
+      class="size-full"
     />
   </div>
 </template>

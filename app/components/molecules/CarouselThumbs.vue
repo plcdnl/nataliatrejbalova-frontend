@@ -22,7 +22,7 @@ const props = defineProps<CarouselThumbsProps>()
     >
       <CraftMedia
         :media="items[index]"
-        class="size-full block object-cover"
+        class="size-full block"
         :img-props="{ sizes: '64px', alt: '' }"
         hide-average-color
       />

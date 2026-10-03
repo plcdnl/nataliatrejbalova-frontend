@@ -25,7 +25,7 @@ const mediaStyle = (media: MediaFragment) => [ratioVars.value, mediaNaturalRatio
   >
     <CraftMedia
       :media
-      class="size-full block object-cover"
+      class="size-full block"
       :img-props="{ sizes: '100vw lg:25vw', alt: media.alt || media.title || undefined }"
     />
   </LightboxTrigger>

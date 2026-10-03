@@ -5,5 +5,8 @@
   <div>
     <TheHeader />
     <slot />
+    <ClientOnly>
+      <KonamiDisable />
+    </ClientOnly>
   </div>
 </template>

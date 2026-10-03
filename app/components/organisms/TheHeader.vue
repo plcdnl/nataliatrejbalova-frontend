@@ -71,8 +71,8 @@ function buildNavTimeline() {
   if (!isDesktop.value) {
     navTl.fromTo($nav.value, { '--reveal': 0 }, {
       '--reveal': 1,
-      duration: 1,
-      ease: 'power3.inOut',
+      'duration': 1,
+      'ease': 'power3.inOut',
     }, 0)
   }
 
@@ -152,7 +152,7 @@ const siteConfig = useSiteConfig()
       v-if="links.length"
       id="main-nav"
       ref="nav"
-      class="nav container pb-3 flex flex-col items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-[calc(1.5rem+1lh)] lg:pointer-events-none"
+      class="nav container pb-3 flex flex-col pointer-events-none items-start inset-x-0 top-0 fixed z-40 lg:mt-50svh lt-lg:pt-9"
       :class="{ invisible: isHome && !isMounted }"
     >
       <CraftLink
@@ -182,24 +182,25 @@ const siteConfig = useSiteConfig()
     background:
       linear-gradient(white, white) top / 100% calc(100% - var(--bg-fade)) no-repeat,
       linear-gradient(
-        to bottom,
-        rgb(255 255 255 / 1) 0%,
-        rgb(255 255 255 / 0.987) 8.1%,
-        rgb(255 255 255 / 0.951) 15.5%,
-        rgb(255 255 255 / 0.896) 22.5%,
-        rgb(255 255 255 / 0.825) 29%,
-        rgb(255 255 255 / 0.741) 35.3%,
-        rgb(255 255 255 / 0.648) 41.2%,
-        rgb(255 255 255 / 0.55) 47.1%,
-        rgb(255 255 255 / 0.45) 52.9%,
-        rgb(255 255 255 / 0.352) 58.8%,
-        rgb(255 255 255 / 0.259) 64.7%,
-        rgb(255 255 255 / 0.175) 71%,
-        rgb(255 255 255 / 0.104) 77.5%,
-        rgb(255 255 255 / 0.049) 84.5%,
-        rgb(255 255 255 / 0.013) 91.9%,
-        rgb(255 255 255 / 0) 100%
-      ) bottom / 100% var(--bg-fade) no-repeat;
+          to bottom,
+          rgb(255 255 255 / 1) 0%,
+          rgb(255 255 255 / 0.987) 8.1%,
+          rgb(255 255 255 / 0.951) 15.5%,
+          rgb(255 255 255 / 0.896) 22.5%,
+          rgb(255 255 255 / 0.825) 29%,
+          rgb(255 255 255 / 0.741) 35.3%,
+          rgb(255 255 255 / 0.648) 41.2%,
+          rgb(255 255 255 / 0.55) 47.1%,
+          rgb(255 255 255 / 0.45) 52.9%,
+          rgb(255 255 255 / 0.352) 58.8%,
+          rgb(255 255 255 / 0.259) 64.7%,
+          rgb(255 255 255 / 0.175) 71%,
+          rgb(255 255 255 / 0.104) 77.5%,
+          rgb(255 255 255 / 0.049) 84.5%,
+          rgb(255 255 255 / 0.013) 91.9%,
+          rgb(255 255 255 / 0) 100%
+        )
+        bottom / 100% var(--bg-fade) no-repeat;
   }
 }
 </style>

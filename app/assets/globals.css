@@ -21,7 +21,7 @@ html {
   height: 100%;
 
   @screen lg {
-    font-size: 82.5%;
+    font-size: 92.5%;
   }
 
   @screen 4xl {

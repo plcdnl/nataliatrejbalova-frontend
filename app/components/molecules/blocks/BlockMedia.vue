@@ -31,7 +31,7 @@ const videoProps = computed(() => ({
 </script>
 
 <template>
-  <Section padded class="layout-grid">
+  <Section padded class="block-media layout-grid">
     <div class="col-span-6 relative lg:col-start-5">
       <component
         :is="isCarousel ? BlossomCarousel : 'div'"
@@ -71,6 +71,14 @@ const videoProps = computed(() => ({
 </template>
 
 <style scoped>
+/* tra due blockMedia consecutivi la spaziatura è dimezzata (i margini collassano) */
+.section.padded.block-media:has(+ .block-media) {
+  margin-bottom: calc(var(--spacing) * 3);
+}
+.section.padded.block-media + .block-media {
+  margin-top: calc(var(--spacing) * 3);
+}
+
 .media-ratio {
   aspect-ratio: var(--ratio-mobile, var(--ratio, var(--ratio-natural)));
 

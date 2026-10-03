@@ -12,6 +12,9 @@ fragment Project on project_Entry {
   seo {
     ...SEO
   }
+  projectCategory {
+    id
+  }
   relatedProjects {
     ...ProjectThumb
   }

@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@studio-fes/nuxt-remote-svg',
+    '@maas/vue-equipment/nuxt',
   ],
   components: [
     { path: '~/components', pathPrefix: false },
@@ -86,5 +87,9 @@ export default defineNuxtConfig({
       enabled: true,
     },
     disableCacheOverviewLogMessage: true,
+  },
+
+  vueEquipment: {
+    plugins: ['MagicModal'],
   },
 })

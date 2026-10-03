@@ -4,6 +4,13 @@ export default {
     open: 'Menu',
     close: 'Chiudi',
   },
+  project: {
+    related: 'Progetti correlati',
+    more: 'Altri progetti',
+  },
+  lightbox: {
+    close: 'Chiudi',
+  },
   error: {
     notFound: {
       title: 'Pagina non trovata',

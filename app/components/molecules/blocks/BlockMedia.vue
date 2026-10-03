@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BlockMediaFragment, MediaFragment } from '#graphql-operations'
+import { mediaNaturalRatioStyle } from '~/composables/useMediaRatio'
 
 interface BlockMediaProps {
   data: BlockMediaFragment
@@ -13,6 +14,14 @@ const carouselId = `block-media-${useId()}`
 const BlossomCarousel = resolveComponent('BlossomCarousel')
 
 const { style: ratioVars } = useMediaRatio(() => props.data)
+
+// nel carosello ogni slide mantiene le proporzioni del suo file (allineate in alto)
+// e tutte le immagini sono caricate subito, così lo scorrimento non mostra vuoti
+function mediaStyle(media: MediaFragment) {
+  return isCarousel.value
+    ? mediaNaturalRatioStyle(media)
+    : [ratioVars.value, mediaNaturalRatioStyle(media)]
+}
 
 const videoProps = computed(() => ({
   autoplay: props.data.autoplay ?? false,
@@ -28,26 +37,32 @@ const videoProps = computed(() => ({
         :is="isCarousel ? BlossomCarousel : 'div'"
         :id="isCarousel ? carouselId : undefined"
         :as="isCarousel ? 'div' : undefined"
-        class="flex gap-1.5 w-full snap-x snap-mandatory"
+        class="flex gap-1.5 w-full items-start snap-x snap-mandatory"
         :class="{ 'of-x-auto of-y-hidden [scrollbar-width:none]': isCarousel }"
       >
-        <figure
+        <LightboxTrigger
           v-for="media in items"
           :key="media.id ?? undefined"
+          as="figure"
+          :media
           data-blossom-slide
-          class="flex shrink-0 flex-col gap-1 w-full snap-center"
+          class="flex shrink-0 flex-col gap-1 w-full items-start snap-center"
         >
           <CraftMedia
             :media
             :video-props="videoProps"
             class="media-ratio w-full block object-cover"
-            :style="ratioVars"
-            :img-props="{ sizes: '100vw lg:50vw', alt: media.alt || media.title || undefined }"
+            :style="mediaStyle(media)"
+            :img-props="{
+              sizes: '100vw lg:50vw',
+              alt: media.alt || media.title || undefined,
+              loading: isCarousel ? 'eager' : undefined,
+            }"
           />
           <figcaption v-if="data.showCaption && media.caption">
             <Text :html="media.caption" />
           </figcaption>
-        </figure>
+        </LightboxTrigger>
       </component>
 
       <CarouselThumbs v-if="isCarousel" :for="carouselId" :items />
@@ -57,10 +72,10 @@ const videoProps = computed(() => ({
 
 <style scoped>
 .media-ratio {
-  aspect-ratio: var(--ratio-mobile, var(--ratio));
+  aspect-ratio: var(--ratio-mobile, var(--ratio, var(--ratio-natural)));
 
   @screen lg {
-    aspect-ratio: var(--ratio);
+    aspect-ratio: var(--ratio, var(--ratio-natural));
   }
 }
 </style>

@@ -28,13 +28,11 @@ async function goHome() {
 
 <template>
   <main class="container py-3 min-h-svh">
-    <!-- stessa griglia delle righe dell'archivio, all'altezza del menu: il codice al posto dell'anno -->
     <div class="layout-grid mt-50svh">
-      <!-- niente TheHeader: niente query a Craft, la pagina deve reggere anche se il backend non risponde -->
       <Anchor
         :to="localePath('/')"
         :locale="false"
-        class="error-reveal col-span-6 justify-self-start lg:col-span-5"
+        class="error-reveal col-span-6 justify-self-start lg:col-span-4"
         style="--i: 0"
         @click.prevent="goHome"
       >

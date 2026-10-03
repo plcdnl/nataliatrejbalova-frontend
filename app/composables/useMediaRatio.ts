@@ -41,6 +41,16 @@ export function mediaRatioToCss(ratio: MediaRatio | undefined): string | undefin
 }
 
 /**
+ * Proporzioni originali del file, come `--ratio-natural`: senza un ratio impostato in Craft
+ * riservano comunque lo spazio prima che l'immagine (lazy) sia caricata
+ */
+export function mediaNaturalRatioStyle(media: { width?: number | null, height?: number | null } | null | undefined) {
+  return {
+    '--ratio-natural': media?.width && media?.height ? mediaRatioToCss([media.width, media.height]) : undefined,
+  }
+}
+
+/**
  * Reads the CMS "media ratio" field group (mediaRatio/mediaRatioCustomW/…, and
  * their landscape + mobile counterparts) off any data object that has it, and
  * resolves it into ratio tuples and matching `--ratio` / `--ratio-mobile` CSS vars.

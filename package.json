@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@blossom-carousel/vue": "1.6.1",
+    "@maas/vue-equipment": "1.0.0-beta.82",
     "@studio-fes/layer-base": "^0.4.10",
     "@studio-fes/layer-craft": "^0.4.10",
     "@studio-fes/nuxt-remote-svg": "0.1.9",

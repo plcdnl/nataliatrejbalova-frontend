@@ -47,12 +47,9 @@ const { data } = await useAsyncData(`project-related-${props.project.id}-${local
   default: () => ({ projects: [] as ProjectThumbFragment[], manual: false }),
 })
 
-// la sezione sta in fondo alla pagina: entra quando arriva nel viewport, non con la transizione di pagina.
-// IntersectionObserver legge la posizione reale a ogni scroll, quindi regge anche i media che
-// caricano dopo il mount e spostano la sezione (le posizioni di ScrollTrigger resterebbero vecchie)
+// la sezione sta in fondo alla pagina: entra quando arriva nel viewport, non con la transizione di pagina
 const $root = useTemplateRef<HTMLElement>('root')
 let ctx: ReturnType<typeof gsap.context> | undefined
-let observer: IntersectionObserver | undefined
 
 onMounted(() => {
   const root = $root.value
@@ -62,29 +59,19 @@ onMounted(() => {
   ctx = gsap.context(() => {
     const targets = root.querySelectorAll('[data-related-reveal], li')
     gsap.set(targets, { y: PAGE_REVEAL.y, autoAlpha: 0 })
-
-    observer = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting)
-        return
-      observer?.disconnect()
-      ctx?.add(() => gsap.to(targets, {
-        y: 0,
-        autoAlpha: 1,
-        duration: PAGE_REVEAL.duration,
-        ease: PAGE_REVEAL.ease,
-        stagger: PAGE_REVEAL.stagger,
-        clearProps: 'transform,opacity,visibility',
-      }))
-    }, { rootMargin: '0px 0px -15% 0px' })
-
-    observer.observe(root)
+    gsap.to(targets, {
+      y: 0,
+      autoAlpha: 1,
+      duration: PAGE_REVEAL.duration,
+      ease: PAGE_REVEAL.ease,
+      stagger: PAGE_REVEAL.stagger,
+      clearProps: 'transform,opacity,visibility',
+      scrollTrigger: { trigger: root, start: 'top 85%', once: true },
+    })
   }, root)
 })
 
-onBeforeUnmount(() => {
-  observer?.disconnect()
-  ctx?.revert()
-})
+onBeforeUnmount(() => ctx?.revert())
 </script>
 
 <template>

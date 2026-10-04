@@ -46,37 +46,11 @@ const { data } = await useAsyncData(`project-related-${props.project.id}-${local
 }, {
   default: () => ({ projects: [] as ProjectThumbFragment[], manual: false }),
 })
-
-// la sezione sta in fondo alla pagina: entra quando arriva nel viewport, non con la transizione di pagina
-const $root = useTemplateRef<HTMLElement>('root')
-let ctx: ReturnType<typeof gsap.context> | undefined
-
-onMounted(() => {
-  const root = $root.value
-  if (!root)
-    return
-
-  ctx = gsap.context(() => {
-    const targets = root.querySelectorAll('[data-related-reveal], li')
-    gsap.set(targets, { y: PAGE_REVEAL.y, autoAlpha: 0 })
-    gsap.to(targets, {
-      y: 0,
-      autoAlpha: 1,
-      duration: PAGE_REVEAL.duration,
-      ease: PAGE_REVEAL.ease,
-      stagger: PAGE_REVEAL.stagger,
-      clearProps: 'transform,opacity,visibility',
-      scrollTrigger: { trigger: root, start: 'top 85%', once: true },
-    })
-  }, root)
-})
-
-onBeforeUnmount(() => ctx?.revert())
 </script>
 
 <template>
-  <section v-if="data.projects.length" ref="root" class="mt-35svh">
-    <div class="layout-grid mb-6" data-related-reveal>
+  <section v-if="data.projects.length" class="mt-35svh">
+    <div class="layout-grid mb-6">
       <Text as="h3" :text="$t(data.manual ? 'project.related' : 'project.more')" class="text-gray-400 col-span-6 lg:col-start-5" />
     </div>
     <ProjectList :projects="data.projects" :reveal="false" />

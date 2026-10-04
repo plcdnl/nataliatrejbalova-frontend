@@ -21,7 +21,7 @@ export default defineNuxtPlugin({
     }
 
     onNuxtReady(refreshScrollTrigger)
-    nuxtApp.hook('page:finish', refreshScrollTrigger)
+    nuxtApp.hook('page:transition:finish', refreshScrollTrigger)
 
     return {
       provide: {

@@ -49,7 +49,7 @@ const { data } = await useAsyncData(`project-related-${props.project.id}-${local
 </script>
 
 <template>
-  <section v-if="data.projects.length" class="mt-35svh">
+  <section v-if="data.projects.length" class="mt-33svh">
     <div class="layout-grid mb-6">
       <Text as="h3" :text="$t(data.manual ? 'project.related' : 'project.more')" class="text-gray-400 col-span-6 lg:col-start-5" />
     </div>

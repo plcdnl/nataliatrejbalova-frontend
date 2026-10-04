@@ -159,7 +159,7 @@ const siteConfig = useSiteConfig()
         v-for="link in links"
         :key="link?.id ?? undefined"
         :link="link?.customLink ?? undefined"
-        class="nav-item motion-base pointer-events-auto [&.router-link-active]:text-gray-400 hover:text-gray-400"
+        class="nav-item motion-base cursor-pointer pointer-events-auto [&.router-link-active]:text-gray-400 hover:text-gray-400"
       />
     </nav>
   </header>

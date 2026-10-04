@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BlockMediaFragment, MediaFragment } from '#graphql-operations'
+import { useNavigation } from '@blossom-carousel/vue'
 import { mediaNaturalRatioStyle } from '~/composables/useMediaRatio'
 
 interface BlockMediaProps {
@@ -22,6 +23,10 @@ function mediaStyle(media: MediaFragment) {
     ? mediaNaturalRatioStyle(media)
     : [ratioVars.value, mediaNaturalRatioStyle(media)]
 }
+
+// la didascalia sta fuori dallo slider: nel carosello segue la slide attiva
+const navigation = useNavigation(computed(() => (isCarousel.value ? carouselId : undefined)))
+const activeCaption = computed(() => items.value[Math.max(navigation.value.activeIndex, 0)]?.caption)
 
 const videoProps = computed(() => ({
   autoplay: props.data.autoplay ?? false,
@@ -46,7 +51,7 @@ const videoProps = computed(() => ({
           as="figure"
           :media
           data-blossom-slide
-          class="flex shrink-0 flex-col gap-1 w-full items-start snap-center"
+          class="flex shrink-0 flex-col w-full items-start snap-center"
         >
           <CraftMedia
             :media
@@ -59,14 +64,27 @@ const videoProps = computed(() => ({
               loading: isCarousel ? 'eager' : undefined,
             }"
           />
-          <figcaption v-if="data.showCaption && media.caption">
-            <Text :html="media.caption" />
-          </figcaption>
         </LightboxTrigger>
       </component>
 
       <CarouselThumbs v-if="isCarousel" :for="carouselId" :items />
     </div>
+
+    <!-- su mobile sotto il media (gap ridotto), su desktop a destra in sticky -->
+    <!-- cambiando slide la didascalia esce e rientra in dissolvenza -->
+    <Transition
+      mode="out-in"
+      enter-active-class="motion-base"
+      leave-active-class="motion-base"
+      enter-from-class="op-0"
+      leave-to-class="op-0"
+    >
+      <div v-if="data.showCaption && activeCaption" :key="activeCaption" class="col-span-6 -mt-3 lg:mt-0 lg:col-span-2 lg:col-start-11 lg:-ml-2.5">
+        <div class="font-size-0.8em lg:top-3 lg:sticky">
+          <Text :html="activeCaption" />
+        </div>
+      </div>
+    </Transition>
   </Section>
 </template>
 

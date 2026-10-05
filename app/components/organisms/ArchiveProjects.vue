@@ -18,6 +18,7 @@ const { data } = await useAsyncGraphqlQuery('Entries', computed(() => ({
   section: ['project'],
   relatedTo: relatedTo.value,
   site: [locale.value],
+  orderBy: 'date desc',
 })), {
   graphqlCaching: { client: true },
 })

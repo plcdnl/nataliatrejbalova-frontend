@@ -1,25 +1,13 @@
 <script setup lang="ts">
-import type { HeaderFragment } from '#graphql-operations'
-
-const { locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 const Flip = useFlip()
 const isDesktop = useMq('lg')
 
-const { data } = await useAsyncGraphqlQuery('Header', computed(() => ({ site: [locale.value] })), {
-  graphqlCaching: { client: true },
-})
-
-const links = computed(() => (data.value?.data?.headerEntries?.[0] as HeaderFragment | undefined)?.links ?? [])
+const { links, titleTo } = await useHeader()
 
 const router = useRouter()
 const isHome = computed(() => router.currentRoute.value.path === localePath('/'))
-
-const titleTo = computed(() => {
-  const firstLink = parseCraftLink(links.value[0]?.customLink ?? undefined)
-  return firstLink?.to ? getRelativeUrl(firstLink.to) : undefined
-})
 
 const isMenuOpen = ref(false)
 

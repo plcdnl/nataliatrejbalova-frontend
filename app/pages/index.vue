@@ -30,6 +30,48 @@ watch(() => isHomeRoute(router.currentRoute.value), (isHome) => {
     overwrite: true,
   })
 })
+
+// non tutti capiscono di dover cliccare: si esce dalla home anche scrollando,
+// oppure da soli quando il video finisce per la seconda volta
+const { titleTo } = await useHeader()
+
+// wheel e touchmove arrivano a raffica: si naviga una volta sola
+let isLeaving = false
+
+function leaveHome() {
+  if (isLeaving || !titleTo.value || !isHomeRoute(router.currentRoute.value))
+    return
+
+  isLeaving = true
+  navigateTo(titleTo.value)
+}
+
+useEventListener('wheel', (e: WheelEvent) => {
+  if (e.deltaY > 10)
+    leaveHome()
+}, { passive: true })
+
+let touchStartY = 0
+useEventListener('touchstart', (e: TouchEvent) => {
+  touchStartY = e.touches[0]?.clientY ?? 0
+}, { passive: true })
+useEventListener('touchmove', (e: TouchEvent) => {
+  if (touchStartY - (e.touches[0]?.clientY ?? 0) > 40)
+    leaveHome()
+}, { passive: true })
+
+onKeyStroke(['ArrowDown', 'PageDown', ' '], leaveHome)
+
+// il video è in loop e non emette `ended`: si conta quando il tempo torna indietro.
+// timeupdate non fa bubbling, quindi lo si intercetta in capture sul contenitore
+let lastTime = 0
+let loops = 0
+useEventListener($root, 'timeupdate', (e: Event) => {
+  const { currentTime } = e.target as HTMLVideoElement
+  if (currentTime < lastTime && ++loops >= 2)
+    leaveHome()
+  lastTime = currentTime
+}, { capture: true })
 </script>
 
 <template>

@@ -83,6 +83,11 @@ export default defineNuxtConfig({
       authorization: import.meta.dev ? false : 'hunter',
       cacheTagInvalidationDelay: 3000,
     },
+    cdn: {
+      enabled: true,
+      cacheControlHeader: 'CDN-Cache-Control',
+      cacheTagHeader: 'Cache-Tag',
+    },
     data: {
       enabled: true,
     },

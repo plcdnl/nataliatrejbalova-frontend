@@ -110,7 +110,7 @@ const siteConfig = useSiteConfig()
   <header>
     <div
       class="container py-3 flex pointer-events-none transition-colors duration-1000 inset-x-0 top-0 justify-between fixed z-50"
-      :class="isHome ? 'h-svh items-center text-white' : 'items-start'"
+      :class="isHome ? 'h-svh items-center' : 'items-start'"
     >
       <!-- in home l'area cliccabile del titolo copre tutto lo schermo -->
       <Anchor

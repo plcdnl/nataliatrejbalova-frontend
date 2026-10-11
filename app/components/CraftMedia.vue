@@ -79,7 +79,7 @@ watch(() => props.media?.id, () => {
     >
       <rect width="100%" height="100%" :fill="averageColor" />
     </svg>
-    <LazyCraftImage
+    <CraftImage
       v-if="isImage"
       ref="imgRef"
       v-bind="imgProps"
@@ -89,7 +89,7 @@ watch(() => props.media?.id, () => {
       @load="isImageLoaded = true"
       @error="isImageLoaded = true"
     />
-    <LazyCraftVideo
+    <CraftVideo
       v-else-if="isVideo"
       ref="videoRef"
       v-bind="mergedVideoProps"
@@ -100,7 +100,7 @@ watch(() => props.media?.id, () => {
       <template #default="{ progress, isPlaying }">
         <slot name="media-chrome" :progress :is-playing />
       </template>
-    </LazyCraftVideo>
+    </CraftVideo>
     <slot v-else name="empty">
       <DevOnly>
         There is no format for you.

@@ -19,9 +19,7 @@ const { data } = await useAsyncGraphqlQuery('Entries', computed(() => ({
   relatedTo: relatedTo.value,
   site: [locale.value],
   orderBy: 'date desc',
-})), {
-  graphqlCaching: { client: true },
-})
+})))
 
 const projects = computed(() => (data.value?.data?.entries ?? []) as ProjectThumbFragment[])
 </script>

@@ -1,10 +1,5 @@
 import { defaultLocale, locales } from './i18n'
 
-const mediaProxyHosts = [import.meta.env.NUXT_PUBLIC_BACKEND_URL, import.meta.env.NUXT_IMAGE_CLOUDFLARE_BASE_URL]
-  .filter(Boolean)
-  .map(url => new URL(url!).host)
-  .join(',')
-
 export default defineNuxtConfig({
   extends: [
     '@studio-fes/layer-craft',
@@ -23,7 +18,23 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
-    mediaProxyHosts,
+    redisUrl: '',
+  },
+
+  routeRules: {
+    '/**': { isr: true },
+  },
+
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: {
+          interaction: true,
+          visibility: false,
+        },
+      },
+    },
+    payloadExtraction: 'client',
   },
 
   vite: {

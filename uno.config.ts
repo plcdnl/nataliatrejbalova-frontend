@@ -10,6 +10,15 @@ export default defineConfig({
     }),
   ],
 
+  safelist: [
+    'motion-base',
+    'motion-snug',
+    'motion-natural',
+    'motion-relaxed',
+
+    'bg-white',
+    'bg-black',
+  ],
   transformers: [
     transformerDirectives(),
   ],

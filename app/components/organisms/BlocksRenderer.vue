@@ -8,12 +8,12 @@ interface BlocksRendererProps {
 defineProps<BlocksRendererProps>()
 
 const blockComponent = new Map([
-  ['blockGrid_Entry', resolveComponent('LazyBlockGrid')],
-  ['blockMedia_Entry', resolveComponent('LazyBlockMedia')],
-  ['blockText_Entry', resolveComponent('LazyBlockText')],
+  ['blockGrid_Entry', resolveComponent('BlockGrid')],
+  ['blockMedia_Entry', resolveComponent('BlockMedia')],
+  ['blockText_Entry', resolveComponent('BlockText')],
 
-  ['columnBlockMedia_Entry', resolveComponent('LazyColumnBlockMedia')],
-  ['columnBlockText_Entry', resolveComponent('LazyColumnBlockText')],
+  ['columnBlockMedia_Entry', resolveComponent('ColumnBlockMedia')],
+  ['columnBlockText_Entry', resolveComponent('ColumnBlockText')],
 ])
 </script>
 

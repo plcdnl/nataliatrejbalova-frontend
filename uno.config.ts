@@ -41,13 +41,13 @@ export default defineConfig({
     'capsize': '[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]',
 
     'motion-base':
-      'transition-opacity,transform,colors duration-500 ease-custom-circ will-change-transform',
+      'transition-opacity,transform,colors duration-500 ease-custom-circ',
     'motion-snug':
-      'transition-opacity,transform,colors duration-300 ease-custom-circ will-change-transform',
+      'transition-opacity,transform,colors duration-300 ease-custom-circ',
     'motion-natural':
-      'transition-opacity,transform,colors duration-700 ease-custom-circ will-change-transform',
+      'transition-opacity,transform,colors duration-700 ease-custom-circ',
     'motion-relaxed':
-      'transition-opacity,transform,colors duration-1000 ease-custom-circ will-change-transform',
+      'transition-opacity,transform,colors duration-1000 ease-custom-circ',
 
     'lay-v': 'grid grid-flow-row [grid-auto-columns:minmax(0,1fr)] [grid-template-rows:minmax(0,auto)]',
     'lay-h': 'grid grid-flow-col [grid-auto-columns:minmax(0,1fr)] [grid-template-rows:minmax(0,auto)]',

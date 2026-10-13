@@ -16,13 +16,16 @@ pnpm build && node .output/server/index.mjs  # build di produzione in locale
 | `NUXT_IMAGE_PROVIDER`, `NUXT_IMAGE_CLOUDFLARE_BASE_URL` | opzionali | immagini via Cloudflare |
 | `NUXT_REDIS_URL` | produzione | cache dati su Redis (runtime). Se c'è, la cache è sempre attiva |
 | `NUXT_CACHE_ENABLED` | build | `"true"` attiva la cache dati su disco (`.nuxt-multi-cache`) quando non c'è Redis. A runtime: `NUXT_MULTI_CACHE_ENABLED` |
+| `NUXT_CDN_CACHE_ENABLED` | produzione con Cloudflare | `"true"` attiva gli header CDN (`CDN-Cache-Control`, `Cache-Tag`) |
 
-Senza cache (né Redis né `NUXT_CACHE_ENABLED`) le risposte non hanno header CDN: Cloudflare non mette in cache niente.
+Gli header CDN escono solo con `NUXT_CDN_CACHE_ENABLED` **e** la cache dati attiva (Redis o `NUXT_CACHE_ENABLED`). Senza, Cloudflare non mette in cache niente.
+
+Cache, header CDN e prefetch vengono da `@studio-fes/layer-base` e `@studio-fes/layer-craft`: nel progetto restano solo le API di purge (`multiCache.api` in `nuxt.config.ts`) e `server/multiCache.serverOptions.ts`, che riesporta quello del layer.
 
 ## Come funziona la cache
 
 1. **Cache dati (Redis):** ogni query GraphQL a Craft viene salvata con i suoi tag (`entry:303`, `archive:project`…).
-2. **Header CDN:** le query impostano `CDN-Cache-Control: max-age=300, stale-while-revalidate=86400` e `Cache-Tag`. La pagina e il suo `_payload.json` li ereditano dalle query che usano (plugin `graphql-cdn-headers`). Le risposte in anteprima o con errori sono `private`.
+2. **Header CDN:** le query impostano `CDN-Cache-Control: max-age=300, stale-while-revalidate=86400` e `Cache-Tag`. La pagina e il suo `_payload.json` li ereditano dalle query che usano (plugin `graphql-cdn-headers` di layer-craft). Le risposte in anteprima o con errori sono `private`.
 3. **Browser:** l'HTML non ha `Cache-Control`. `_payload.json` ha `private, max-age=60`, così il payload precaricato all'hover di un link viene riusato al click.
 4. **Prefetch:** all'hover o al focus su un link, `NuxtLink` scarica i chunk e il `/<pagina>/_payload.json` con i dati di tutti gli `useAsyncData` della pagina. Al click non partono richieste. Il payload esiste solo nella build di produzione.
 
@@ -66,13 +69,8 @@ Quando salvi un'entry o un asset, craft-toolkit (KV Cache):
 
 L'ordine conta: se Cloudflare venisse svuotato prima, riscaricherebbe dal server una pagina ancora vecchia.
 
-Per attivare il punto 2, in Craft (non qui) servono:
+Il punto 2 si accende e spegne in Craft, da **Utilities → KV Cache → Settings → Cloudflare**: interruttore, Zone ID (Cloudflare → dominio → Overview) e API token con permesso "Zone → Cache Purge", solo su questa zona. I due campi accettano `$ENV_VAR` e di default leggono `CLOUDFLARE_ZONE_ID` e `CLOUDFLARE_API_TOKEN` dall'env di Craft. Il pulsante *Verify saved Cloudflare settings* controlla il token.
 
-```env
-CLOUDFLARE_ZONE_ID="..."     # Cloudflare → dominio → Overview → Zone ID
-CLOUDFLARE_API_TOKEN="..."   # API token con permesso "Zone → Cache Purge", solo su questa zona
-```
+Con il purge spento le pagine su Cloudflare si aggiornano solo quando scade `max-age` (5 minuti).
 
-Senza queste variabili le pagine su Cloudflare si aggiornano solo quando scade `max-age` (5 minuti).
-
-Il frontend manda `Cache-Tag` separati da virgole, come vuole Cloudflare (plugin `server/plugins/cloudflare-cache-tags.ts`; nuxt-multi-cache da solo li separerebbe con spazi). Per verificarlo: modifica un'entry, aspetta circa 15 secondi, e `curl -sI` sulla pagina deve dare `cf-cache-status: MISS` e poi `HIT`.
+Il frontend manda `Cache-Tag` separati da virgole, come vuole Cloudflare (plugin `cloudflare-cache-tags` di layer-craft; nuxt-multi-cache da solo li separerebbe con spazi). Per verificarlo: modifica un'entry, aspetta circa 15 secondi, e `curl -sI` sulla pagina deve dare `cf-cache-status: MISS` e poi `HIT`.

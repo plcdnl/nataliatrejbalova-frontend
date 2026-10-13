@@ -17,26 +17,6 @@ export default defineNuxtConfig({
     '@blossom-carousel/vue/style.css',
   ],
 
-  runtimeConfig: {
-    redisUrl: '',
-  },
-
-  routeRules: {
-    '/**': { isr: true },
-  },
-
-  experimental: {
-    defaults: {
-      nuxtLink: {
-        prefetchOn: {
-          interaction: true,
-          visibility: false,
-        },
-      },
-    },
-    payloadExtraction: 'client',
-  },
-
   vite: {
     optimizeDeps: {
       include: [
@@ -94,15 +74,6 @@ export default defineNuxtConfig({
       authorization: import.meta.dev ? false : 'hunter',
       cacheTagInvalidationDelay: 3000,
     },
-    cdn: {
-      enabled: true,
-      cacheControlHeader: 'CDN-Cache-Control',
-      cacheTagHeader: 'Cache-Tag',
-    },
-    data: {
-      enabled: true,
-    },
-    disableCacheOverviewLogMessage: true,
   },
 
   vueEquipment: {

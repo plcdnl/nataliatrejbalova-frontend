@@ -2,7 +2,7 @@
  * Override di `createCacheTags` di layer-craft: tagga ogni entry e asset presenti nella risposta,
  * a qualsiasi profondità e per qualsiasi query (Splashscreen, Header, blocchi, relazioni…),
  * con gli stessi tag che craft-toolkit manda al purge (`DeferredPurgeCacheJob::collectTags`):
- * `entry:<id>`, `asset:<id>` e `archive:<section>` per le liste di entry.
+ * `entry:<id>`, `asset:<id>`, `archive:<section>` per le liste di entry, `SiteConfig` e `OrgSchema`.
  */
 export function createCacheTags(operationName: string, result: any): string[] {
   const cacheTags = new Set<string>()
@@ -38,7 +38,9 @@ export function createCacheTags(operationName: string, result: any): string[] {
 
   walk(result?.data)
 
-  // una lista di entry dipende anche da quelle nuove della stessa sezione, che ancora non ha taggato
+  if (operationName === 'SiteConfig' || operationName === 'OrgSchema')
+    cacheTags.add(operationName)
+
   if (operationName === 'Entries' && Array.isArray(result?.data?.entries)) {
     result.data.entries.forEach((entry: any) => {
       if (entry?.sectionHandle || entry?.typeHandle)

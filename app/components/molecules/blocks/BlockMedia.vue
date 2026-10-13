@@ -16,13 +16,7 @@ const BlossomCarousel = resolveComponent('BlossomCarousel')
 
 const { style: ratioVars } = useMediaRatio(() => props.data)
 
-// nel carosello ogni slide mantiene le proporzioni del suo file (allineate in alto)
-// e tutte le immagini sono caricate subito, così lo scorrimento non mostra vuoti
-function mediaStyle(media: MediaFragment) {
-  return isCarousel.value
-    ? mediaNaturalRatioStyle(media)
-    : [ratioVars.value, mediaNaturalRatioStyle(media)]
-}
+const mediaStyle = (media: MediaFragment) => [ratioVars.value, mediaNaturalRatioStyle(media)]
 
 // la didascalia sta fuori dallo slider: nel carosello segue la slide attiva
 const navigation = useNavigation(computed(() => (isCarousel.value ? carouselId : undefined)))

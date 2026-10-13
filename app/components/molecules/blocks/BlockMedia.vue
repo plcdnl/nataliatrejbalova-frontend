@@ -18,7 +18,6 @@ const { style: ratioVars } = useMediaRatio(() => props.data)
 
 const mediaStyle = (media: MediaFragment) => [ratioVars.value, mediaNaturalRatioStyle(media)]
 
-// la didascalia sta fuori dallo slider: nel carosello segue la slide attiva
 const navigation = useNavigation(computed(() => (isCarousel.value ? carouselId : undefined)))
 const activeCaption = computed(() => items.value[Math.max(navigation.value.activeIndex, 0)]?.caption)
 

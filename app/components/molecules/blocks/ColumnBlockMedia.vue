@@ -33,6 +33,7 @@ const mediaStyle = (media: MediaFragment) => [ratioVars.value, mediaNaturalRatio
 
 <style scoped>
 .media-ratio {
+  overflow: hidden;
   aspect-ratio: var(--ratio-mobile, var(--ratio, var(--ratio-natural)));
 
   @screen lg {

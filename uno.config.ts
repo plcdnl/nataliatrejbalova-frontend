@@ -54,6 +54,8 @@ export default defineConfig({
     'lay-fluid': 'grid grid-flow-row auto-rows-fr [grid-auto-columns:minmax(0,1fr)]',
     'lay-o': 'grid [&>*]:[grid-area:1/1]',
 
+    'scrollbar-none': '[scrollbar-width:none]',
+
     'typo-serif-1': 'font-serif text-4 lg:text-5 leading-[1.2]',
 
     // link dentro testi rich text (html da Craft)

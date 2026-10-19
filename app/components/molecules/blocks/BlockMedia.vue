@@ -36,7 +36,7 @@ const videoProps = computed(() => ({
         :id="isCarousel ? carouselId : undefined"
         :as="isCarousel ? 'div' : undefined"
         class="flex gap-1.5 w-full items-start snap-x snap-mandatory"
-        :class="{ 'of-x-auto of-y-hidden [scrollbar-width:none]': isCarousel }"
+        :class="{ 'of-x-auto of-y-hidden scrollbar-none': isCarousel }"
       >
         <LightboxTrigger
           v-for="media in items"

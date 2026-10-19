@@ -124,12 +124,12 @@ useHead({
         <MagicModalProvider :id="LIGHTBOX_ID" :options="{ scrollLock: false }">
           <MagicModalBackdrop />
           <MagicModalContent>
-            <div class="grid grid-cols-[100%] grid-rows-[100%] w-full select-none h-svh">
+            <div class="w-full select-none relative h-svh">
               <BlossomCarousel
                 v-if="isActive"
                 ref="carousel"
                 as="div"
-                class="flex [grid-area:1/1] [scrollbar-width:none] of-x-auto of-y-hidden snap-x snap-mandatory"
+                class="flex size-full scrollbar-none of-x-auto of-y-hidden snap-x snap-mandatory"
                 :class="{
                   'cursor-w-resize': side === 'prev',
                   'cursor-e-resize': side === 'next',
@@ -157,11 +157,11 @@ useHead({
                 </figure>
               </BlossomCarousel>
 
-              <div class="container py-3 flex gap-4 pointer-events-none [grid-area:1/1] items-start self-start justify-between">
+              <div class="container py-3 flex gap-4 pointer-events-none items-start left-0 top-0 justify-between absolute z-1">
                 <span v-if="hasMany" class="tabular-nums">{{ index + 1 }} / {{ items.length }}</span>
                 <button
                   type="button"
-                  class="ml-auto motion-base pointer-events-auto hover:op-50"
+                  class="ml-auto pointer-events-auto motion-base hover:op-50"
                   @click="close"
                 >
                   {{ t('lightbox.close') }}
@@ -171,7 +171,7 @@ useHead({
               <!-- finché le caption non sono compilate in Craft si usa il titolo del file -->
               <div
                 v-if="currentMedia?.caption || currentMedia?.title"
-                class="container pb-3 text-center pointer-events-none [grid-area:1/1] self-end"
+                class="container pb-3 text-center pointer-events-none bottom-0 left-0 absolute z-1"
               >
                 <Text v-if="currentMedia.caption" :html="currentMedia.caption" />
                 <template v-else>
